@@ -221,48 +221,63 @@ public static Map.Entry<Boolean, Doctor> addDoctor(){
       
     }
 
-//CREDENTIAL VALIDATION1
+//CREDENTIAL VALIDATION
 
 
 public static Map.Entry<Boolean, Doctor> isUserCorrect() {
+    Scanner scanner = new Scanner(System.in);
     boolean doctorExists = false;
-    boolean passwordCorrect = false;
-    String username = null;
-    String password = null;
+    String username = "";
     Doctor doc = null;
 
-    // Username verification loop
     while (!doctorExists) {
         System.out.println("Please type the username:");
         username = scanner.next();
-        doctorExists = DBManager.doesDoctorExist(username);
-        if (!doctorExists) {
-            // Notify the user if the doctor doesn't exist
-            System.out.println("No doctor registered under this username. Please try again.");
-        }
-    }
 
-    // Once a valid username is entered, proceed to password verification
-    while (!passwordCorrect) {
-        System.out.println("Please type password:");
-        password = scanner.next();
-        // Assume the Doctor constructor hashes the password, or retrieve the hash directly as needed
-        doc = new Doctor(username, password);
-        System.out.println("");
-        passwordCorrect = DBManager.isPasswordCorrect(username, Utils.hashPassword(password)); // Assuming this method expects the raw password to check against the hash
-        if (!passwordCorrect) {
-            System.out.println("Incorrect password. Please try again.");
+        if (!DBManager.doesDoctorExist(username)) {
+            System.out.println("No doctor registered under this username.");
+            System.out.println("1. Retry typing the username");
+            System.out.println("2. Sign up");
+            System.out.print("Choose an option: ");
+            int choice = scanner.nextInt();
+
+            if (choice == 2) {
+                // Redirect to signup
+                return new AbstractMap.SimpleEntry<>(false, null);
+            } // If the user chooses to retry, the loop will continue
         } else {
-            // If the password is correct, fetch and set the doctor's ID
-            int doctorId = DBManager.getDoctorIdByUsername(username);
-            if(doc != null) { // Ensure doc is not null
-                doc.setId(doctorId);
+            doctorExists = true; // Doctor exists
+            // Proceed with password verification
+            boolean passwordCorrect = false;
+            while (!passwordCorrect) {
+                System.out.println("Please type the password:");
+                String password = scanner.next();
+                passwordCorrect = DBManager.isPasswordCorrect(username, Utils.hashPassword(password));
+                if (passwordCorrect) {
+                    // Password is correct, create Doctor object
+                    int doctorId = DBManager.getDoctorIdByUsername(username);
+                    doc = new Doctor(username, password);
+                    doc.setId(doctorId); // Assuming Doctor class has an setId method
+                    System.out.println("Login successful.");
+                    return new AbstractMap.SimpleEntry<>(true, doc);
+                } else {
+                    System.out.println("Incorrect password. Please try again.");
+                    System.out.println("1. Retry typing the password");
+                    System.out.println("2. Return to username input");
+                    System.out.print("Choose an option: ");
+                    int choice = scanner.nextInt();
+                    if (choice == 2) {
+                        // Break out to the outer loop to re-enter the username
+                        doctorExists = false; 
+                        break;
+                    }
+                    // If the user chooses to retry, the loop will continue to prompt for the password
+                }
             }
         }
     }
-
-    // Return both doctorExists (which will be true at this point) and the Doctor object
-    return new AbstractMap.SimpleEntry<>(true, doc);
+    // This return statement is a fallback and should never be reached due to the loops, but is necessary to compile
+    return new AbstractMap.SimpleEntry<>(false, null);
 }
 
 
