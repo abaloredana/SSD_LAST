@@ -5,12 +5,6 @@
 package diabetes.project;
 
 import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
-import static org.apache.tools.ant.dispatch.DispatchUtils.execute;
-import org.kie.api.KieServices;
-import org.kie.api.runtime.KieContainer;
-import org.kie.api.runtime.KieSession;
 
 
 public class DiabetesLogic {

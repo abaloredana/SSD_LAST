@@ -1,0 +1,262 @@
+package diabetes.project
+import diabetes.project.Patient
+import diabetes.project.Treatment
+
+
+// ALL RULES FOR INSULIN
+
+rule "Insulin 1"
+    when
+    $patient : Patient(insulinProd == 1, insulinRes == false)
+    then
+        $patient.applyTreatment("Insulin", true, 100.0);
+        System.out.println("RULE 1 APPLIED");
+end
+
+rule "Insulin 2"
+    when
+    $patient : Patient(insulinProd == 2, insulinRes == false)
+    then
+        $patient.applyTreatment("Insulin", true, 100.0);
+        System.out.println("RULE 2 APPLIED");
+end
+
+// ALL RULES FOR METFORMIN
+rule "Metformin 1"
+    when
+    $patient : Patient(typeOfDiabetes == 1, insulinProd == 3, bmi>=25, age >= 10)
+    then
+        $patient.applyTreatment("Metformin", true, 100.0);
+        System.out.println("RULE 3 APPLIED");
+end
+
+rule "Metformin 2"
+    when
+    $patient : Patient(typeOfDiabetes == 1, insulinProd == 4, bmi>=25, age >= 10)
+    then
+        $patient.applyTreatment("Metformin", true, 100.0);
+        System.out.println("RULE 4 APPLIED");
+end
+
+rule "Metformin 3"
+    when
+    $patient : Patient(typeOfDiabetes == 2, insulinProd == 3, age >= 10)
+    then
+        $patient.applyTreatment("Metformin", true, 100.0);
+        System.out.println("RULE 5 APPLIED");
+end
+
+rule "Metformin 4"
+    when
+    $patient : Patient(typeOfDiabetes == 2, insulinProd == 4, age >= 10)
+    then
+        $patient.applyTreatment("Metformin", true, 100.0);
+        System.out.println("RULE 6 APPLIED");
+end
+
+// RULE FOR SITAGLIPTIN
+
+rule "Sitagliptin"
+    when
+    $patient : Patient(typeOfDiabetes == 2, insulinProd == 3, age >= 18)
+    then
+        $patient.applyTreatment("Sitagliptin", true, 100.0);
+        System.out.println("RULE 7 APPLIED");
+end
+
+// RULE FOR SAXAGLIPTIN
+
+rule "Saxagliptin"
+    when
+    $patient : Patient(typeOfDiabetes == 2, insulinProd == 3, age >= 18)
+    then
+        $patient.applyTreatment("Saxagliptin", true, 100.0);
+        System.out.println("RULE 8 APPLIED");
+end
+
+// RULE FOR LINAGLIPTIN
+
+rule "Linagliptin"
+    when
+    $patient : Patient(typeOfDiabetes == 2, insulinProd == 3, age >= 18)
+    then
+        $patient.applyTreatment("Linagliptin", true, 100.0);
+        System.out.println("RULE 9 APPLIED");
+end
+
+// ALL RULES FOR DULAGLUTIDE
+
+rule "Dulaglutide 1"
+    when
+    $patient : Patient(typeOfDiabetes == 2, insulinProd == 3, bmi >= 18.5, age >= 18)
+    then
+        $patient.applyTreatment("Dulaglutide", true, 100.0);
+        System.out.println("RULE 10 APPLIED");
+end
+
+rule "Dulaglutide 2"
+    when
+    $patient : Patient(typeOfDiabetes == 2, insulinProd == 4, bmi >= 18.5, age >= 18)
+    then
+        $patient.applyTreatment("Dulaglutide", true, 100.0);
+        System.out.println("RULE 11 APPLIED");
+end
+
+// ALL RULES FOR EXANATIDE
+
+rule "Exenatide 1"
+    when
+    $patient : Patient(typeOfDiabetes == 2, insulinProd == 3, bmi >= 18.5, age >= 12)
+    then
+        $patient.applyTreatment("Exenatide", true, 100.0);
+        System.out.println("RULE 12 APPLIED");
+end
+
+rule "Exenatide 2"
+    when
+    $patient : Patient(typeOfDiabetes == 2, insulinProd == 4, bmi >= 18.5, age >= 12)
+    then
+        $patient.applyTreatment("Exenatide", true, 100.0);
+        System.out.println("RULE 13 APPLIED");
+end
+
+// ALL RULES FOR LIXISENATIDE
+
+rule "Lixisenatide 1"
+    when
+    $patient : Patient(typeOfDiabetes == 2, insulinProd == 3, bmi >= 18.5, age >= 18)
+    then
+        $patient.applyTreatment("Lixisenatide", true, 100.0);
+        System.out.println("RULE 14 APPLIED");
+end
+
+rule "Lixisenatide 2"
+    when
+    $patient : Patient(typeOfDiabetes == 2, insulinProd == 4, bmi >= 18.5, age >= 18)
+    then
+        $patient.applyTreatment("Lixisenatide", true, 100.0);
+        System.out.println("RULE 15 APPLIED");
+end
+
+// ALL RULES FOR SEMAGLUTIDE
+
+rule "Semaglutide 1"
+    when
+    $patient : Patient(typeOfDiabetes == 2, insulinProd == 3, bmi >= 25, age >= 12)
+    then
+        $patient.applyTreatment("Semaglutide", true, 100.0);
+        System.out.println("RULE 16 APPLIED");
+end
+
+rule "Semaglutide 2"
+    when
+    $patient : Patient(typeOfDiabetes == 2, insulinProd == 4, bmi >= 25, age >= 12)
+    then
+        $patient.applyTreatment("Semaglutide", true, 100.0);
+        System.out.println("RULE 17 APPLIED");
+end
+
+// RULE FOR BEXAGLIFLOZIN
+
+rule "Bexagliflozin"
+    when
+    $patient : Patient(typeOfDiabetes == 2, insulinProd == 4, bmi >= 18.5, age >= 18)
+    then
+        $patient.applyTreatment("Bexagliflozin", true, 100.0);
+        System.out.println("RULE 18 APPLIED");
+end
+
+// RULE FOR CANAGLIFLOZIN
+
+rule "Canagliflozin"
+    when
+    $patient : Patient(typeOfDiabetes == 2, insulinProd == 4, bmi >= 18.5, age >= 18)
+    then
+        $patient.applyTreatment("Canagliflozin", true, 100.0);
+        System.out.println("RULE 19 APPLIED");
+end
+
+// RULE FOR DAPAGLIFLOZIN
+
+rule "Dapagliflozin"
+    when
+    $patient : Patient(typeOfDiabetes == 2, insulinProd == 4, bmi >= 18.5, age >= 18)
+    then
+        $patient.applyTreatment("Dapagliflozin", true, 100.0);
+        System.out.println("RULE 20 APPLIED");
+end
+
+// ALL RULES FOR GLIMEPIRIDE
+
+rule "Glimepiride 1"
+    when
+    $patient : Patient(typeOfDiabetes == 2, insulinProd == 2, nafld == false, osteoporosis == false, bmi >= 18.5, age >= 20 && age < 66 )
+    then
+        $patient.applyTreatment("Glimepiride", true, 100.0);
+        System.out.println("RULE 21 APPLIED");
+end
+
+rule "Glimepiride 2"
+    when
+    $patient : Patient(typeOfDiabetes == 2, insulinProd == 3, nafld == false, osteoporosis == false, bmi >= 18.5, age >= 20 && age < 66 )
+    then
+        $patient.applyTreatment("Glimepiride", true, 100.0);
+        System.out.println("RULE 22 APPLIED");
+end
+
+// ALL RULES FOR GLIPIZIDE
+
+rule "Glipizide 1"
+    when
+    $patient : Patient(typeOfDiabetes == 2, insulinProd == 2, nafld == false, osteoporosis == false, bmi >= 18.5, age >= 20 && age < 66 )
+    then
+        $patient.applyTreatment("Glipizide", true, 100.0);
+        System.out.println("RULE 23 APPLIED");
+end
+
+rule "Glipizide 2"
+    when
+    $patient : Patient(typeOfDiabetes == 2, insulinProd == 3, nafld == false, osteoporosis == false, bmi >= 18.5, age >= 20 && age < 66 )
+    then
+        $patient.applyTreatment("Glipizide", true, 100.0);
+        System.out.println("RULE 24 APPLIED");
+end
+
+// ALL RULES FOR GLYBURIDE
+
+rule "Glyburide 1"
+    when
+    $patient : Patient(typeOfDiabetes == 2, insulinProd == 2, nafld == false, osteoporosis == false, bmi >= 18.5, age >= 20 && age < 66 )
+    then
+        $patient.applyTreatment("Glyburide", true, 100.0);
+        System.out.println("RULE 25 APPLIED");
+end
+
+rule "Glyburide 2"
+    when
+    $patient : Patient(typeOfDiabetes == 2, insulinProd == 3, nafld == false, osteoporosis == false, bmi >= 18.5, age >= 20 && age < 66 )
+    then
+        $patient.applyTreatment("Glyburide", true, 100.0);
+        System.out.println("RULE 26 APPLIED");
+end
+
+// RULE FOR ROSIGLITAZONE
+
+rule "Rosiglitazone"
+    when
+    $patient : Patient(typeOfDiabetes == 2, insulinProd == 4, hypotension == false, dyslipidemia == false, osteoporosis == false, bmi < 25, age >= 18 && age < 51)
+    then
+        $patient.applyTreatment("Rosiglitazone", true, 100.0);
+        System.out.println("RULE 27 APPLIED");
+end
+
+// RULE FOR PIOGLITAZONE
+
+rule "Pioglitazone"
+    when
+    $patient : Patient(typeOfDiabetes == 2, insulinProd == 4, hypotension == false, dyslipidemia == false, osteoporosis == false, bmi < 25, age >= 18 && age < 51)
+    then
+        $patient.applyTreatment("Pioglitazone", true, 100.0);
+        System.out.println("RULE 28 APPLIED");
+end
+
