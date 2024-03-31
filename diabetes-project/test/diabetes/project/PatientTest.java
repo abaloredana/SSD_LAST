@@ -4,9 +4,8 @@
  */
 package diabetes.project;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 import org.kie.api.runtime.KieSession;
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
