@@ -23,283 +23,392 @@ import java.util.Scanner;
 
 public class DiabetesInterface {
 
-    private static final String ANSI_RED = "\u001B[31m";
-    private static final String ANSI_GREEN = "\u001B[32m";
-    private static final String ANSI_RESET = "\u001B[0m";
-    public static Set<Patient> patients = new HashSet<>();
-    private static Scanner scanner = new Scanner(System.in);
-    
-public static void menu(Doctor doctor) {
-    KieContext kieContext = null; // Initialize outside the loop to persist the context
-    //DBMannager.createTables();
-    while (true) {
-        System.out.println("\nDiabetes Management System");
-        System.out.println("1. Add Patient");
-        System.out.println("2. Evaluate Patients.");
-        System.out.println("3. Exit.");
+	private static final String ANSI_RED = "\u001B[31m";
+	private static final String ANSI_GREEN = "\u001B[32m";
+	private static final String ANSI_RESET = "\u001B[0m";
+	public static Set<Patient> patients = new HashSet<>();
+	private static Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Choose an option: ");
-        int choice = scanner.nextInt();
-        scanner.nextLine(); // Consume newline
+	public static void menu(Doctor doctor) {
+		KieContext kieContext = null;
+		while (true) {
 
-        switch (choice) {
-            case 1:
-                addNewPatient(scanner, doctor);
-                break;
-            case 2:
-                if (kieContext == null) {
-                    kieContext = evaluatePatients(); // Only initialize if not already done
-                }
-                performEvaluation(kieContext,doctor); // This will handle the evaluation logic
-                break;
-            case 3:
-                System.exit(0);
-            default:
-                System.out.println("Invalid choice. Please try again.");
-        }
-    }
-}
+			String input;
+			do {
+				System.out.println("\nDiabetes Management System");
+				System.out.println("1. Add Patient");
+				System.out.println("2. Evaluate Patients.");
+				System.out.println("3. Exit.");
 
-    
+				System.out.print("Choose an option: ");
+				input = scanner.nextLine().trim();
 
-private static Set<Patient> addNewPatient(Scanner scanner, Doctor doctor) {
-    System.out.println("Adding a new patient...");
+				if (!Utils.choiceIsValid(input)) {
+					System.out.println("Invalid choice. Please enter a non-negative integer.");
+				}
+			} while (!Utils.choiceIsValid(input));
 
-    System.out.println("Enter patient name:");
-    String name = scanner.nextLine();
+			int choice = Integer.parseInt(input);
 
-    int typeOfDiabetes;
-    do {
-        System.out.println("Enter type of diabetes (1 for Type 1, 2 for Type 2):");
-        typeOfDiabetes = scanner.nextInt();
-        if (typeOfDiabetes < 1 || typeOfDiabetes > 2) {
-            System.out.println("Invalid input. Please enter 1 for Type 1 or 2 for Type 2 diabetes.");
-        }
-    } while (typeOfDiabetes < 1 || typeOfDiabetes > 2);
+			switch (choice) {
+			case 1:
+				addNewPatient(scanner, doctor);
+				break;
+			case 2:
+				if (kieContext == null) {
+					kieContext = evaluatePatients();
+				}
+				performEvaluation(kieContext, doctor);
+				break;
+			case 3:
+				System.exit(0);
+			default:
+				invalidChoicePrompt();
+			}
+		}
+	}
 
-    System.out.println("Enter BMI:");
-    double bmi = scanner.nextDouble();
+	private static Set<Patient> addNewPatient(Scanner scanner, Doctor doctor) {
+		System.out.println("Adding a new patient...");
 
-    System.out.println("Enter age:");
-    int age = scanner.nextInt();
+		String name;
 
-    int insulinProd;
-    do {
-        System.out.println("Enter insulin production (1=NO PROD, 2=HYPO, 3=NORMAL, 4=HYPER):");
-        insulinProd = scanner.nextInt();
-        if (insulinProd < 1 || insulinProd > 4) {
-            System.out.println("Invalid input. Please enter a number between 1 and 4.");
-        }
-    } while (insulinProd < 1 || insulinProd > 4);
+		do {
+			System.out.println("Enter patient name:");
+			name = scanner.nextLine().trim();
 
-    scanner.nextLine(); 
+			if (!Utils.nameIsValid(name)) {
+				System.out.println("Invalid name. Please enter a valid patient name: ");
+			}
+		} while (!Utils.nameIsValid(name));
 
-    boolean insulinRes = promptYesNo("Is insulin resistant? (y/n):");
-    boolean hypotension = promptYesNo("Has hypotension? (y/n):");
-    boolean dyslipidemia = promptYesNo("Has dyslipidemia? (y/n):");
-    boolean pad = promptYesNo("Has peripheral artery disease (PAD)? (y/n):");
-    boolean nafld = promptYesNo("Has non-alcoholic fatty liver disease (NAFLD)? (y/n):");
-    boolean osteoporosis = promptYesNo("Has osteoporosis? (y/n):");
+		String input;
 
-    Patient patient = new Patient(name, typeOfDiabetes, bmi, age, insulinProd, insulinRes, hypotension, dyslipidemia, pad, nafld, osteoporosis);
-    
-    patients.add(patient);
-    
-    DBManager.insertPatient(patient.getName(), patient.getTypeOfDiabetes(), patient.getBmi(), patient.getAge(), patient.getInsulinProd(), patient.isInsulinRes(), patient.isHypotension(), patient.isDyslipidemia(), patient.isPad(), patient.isNafld(), patient.isOsteoporosis(), doctor);
+		do {
+			System.out.println("Enter type of diabetes (1 for Type 1, 2 for Type 2):");
+			input = scanner.nextLine().trim();
 
-    System.out.println("Patient added successfully.");
-return patients;   
-}
+			if (!Utils.typeOfDiabetesIsValid(input)) {
+				System.out.println("Invalid type of diabetes. Please enter 1 for Type 1 or 2 for Type 2 diabetes.");
+			}
+		} while (!Utils.typeOfDiabetesIsValid(input));
 
-private static boolean promptYesNo(String message) {
-    String input;
-    do {
-        System.out.print(message);
-        input = scanner.nextLine().trim().toLowerCase();
-        if (!input.equals("y") && !input.equals("n")) {
-            System.out.println("Invalid input. Please enter 'y' for yes or 'n' for no.");
-        }
-    } while (!input.equals("y") && !input.equals("n"));
-    return input.equals("y");
-}
+		int typeOfDiabetes = Integer.parseInt(input);
 
- // DOCTOR METHODS 
-    public static Doctor promptForDoctorCredentials(){
-        
-        System.out.println("Input your username:\n");
-        String username = scanner.nextLine();
-        System.out.println("Input yor password:\n");
-        String password = scanner.nextLine();
-        
-        return new Doctor(username, password);
-    }
-   
-    public static int welcomePrompt(){
-        System.out.println("Welcome to our DSS!\n");
-        System.out.println("1.Login\n");
-        System.out.println("2.Sign Up \n");
-        int option = scanner.nextInt();
-        return option;
-    }
-    
-    public static boolean logInVeredict(boolean authorized) {
-        try {
-            
-            if (authorized) {
-                System.out.println(ANSI_GREEN + "Login successful" + ANSI_RESET);
-                return true;
-            } else {
-                System.out.println(ANSI_RED + "Login failed" + ANSI_RESET);
-                return false;
-            }
-        } catch (Exception e) {
-            System.out.println("Login error: " + e.getMessage());
-            return false;
-        }
-    }
+		do {
+			System.out.println("Enter BMI:");
+			input = scanner.nextLine().trim();
+
+			if (!Utils.bmiIsValid(input)) {
+				System.out.println("Invalid BMI. Please enter a positive double number.");
+			}
+		} while (!Utils.bmiIsValid(input));
+
+		double bmi = Double.parseDouble(input);
+
+		do {
+			System.out.println("Enter age:");
+			input = scanner.nextLine().trim();
+
+			if (!Utils.ageIsValid(input)) {
+				System.out.println("Invalid age. Please enter a positive integer number.");
+			}
+		} while (!Utils.ageIsValid(input));
+
+		int age = Integer.parseInt(input);
+
+		do {
+			System.out.println("Enter insulin production (1 = NO INSULIN PRODUCTION, "
+					+ "2 = HYPOINSULINEMIA, 3 = NORMOINSULINEMIA, 4 = HYPERINSULINEMIA):");
+			input = scanner.nextLine().trim();
+			if (Utils.insulinProdIsValid(input)) {
+				System.out.println("Invalid input. Please enter a number between 1 and 4.");
+			}
+		} while (Utils.insulinProdIsValid(input));
+
+		int insulinProd = Integer.parseInt(input);
+
+		scanner.nextLine();
+
+		boolean insulinRes = promptYesNo("Is insulin resistant? (y/n):");
+		boolean hypotension = promptYesNo("Has hypotension? (y/n):");
+		boolean dyslipidemia = promptYesNo("Has dyslipidemia? (y/n):");
+		boolean pad = promptYesNo("Has peripheral artery disease (PAD)? (y/n):");
+		boolean nafld = promptYesNo("Has non-alcoholic fatty liver disease (NAFLD)? (y/n):");
+		boolean osteoporosis = promptYesNo("Has osteoporosis? (y/n):");
+
+		Patient patient = new Patient(name, typeOfDiabetes, bmi, age, insulinProd, insulinRes, hypotension,
+				dyslipidemia, pad, nafld, osteoporosis);
+
+		patients.add(patient);
+
+		DBManager.insertPatient(patient.getName(), patient.getTypeOfDiabetes(), patient.getBmi(), patient.getAge(),
+				patient.getInsulinProd(), patient.isInsulinRes(), patient.isHypotension(), patient.isDyslipidemia(),
+				patient.isPad(), patient.isNafld(), patient.isOsteoporosis(), doctor);
+
+		System.out.println("Patient added successfully.");
+		return patients;
+	}
+
+	private static boolean promptYesNo(String message) {
+		String input;
+		do {
+			System.out.print(message);
+			input = scanner.nextLine().trim();
+			if (!Utils.yesNoIsValid(input)) {
+				System.out.println("Invalid input. Please enter 'y' for yes or 'n' for no.");
+			}
+		} while (!Utils.yesNoIsValid(input));
+		return input.equals("y") || input.equals("Y");
+	}
+
+	// DOCTOR METHODS
+
+	public static int welcomePrompt() {
+		String input;
+		do {
+			System.out.println("Welcome to our DSS!\n");
+			System.out.println("1.Login\n");
+			System.out.println("2.Sign Up \n");
+
+			System.out.print("Choose an option: ");
+			input = scanner.nextLine().trim();
+
+			if (!Utils.choiceIsValid(input)) {
+				System.out.println("Invalid choice. Please enter a non-negative integer.");
+			}
+		} while (!Utils.choiceIsValid(input));
+
+		int choice = Integer.parseInt(input);
+
+		return choice;
+	}
+
+	public static boolean logInVeredict(boolean authorized) {
+		try {
+
+			if (authorized) {
+				System.out.println(ANSI_GREEN + "Login successful" + ANSI_RESET);
+				return true;
+			} else {
+				System.out.println(ANSI_RED + "Login failed" + ANSI_RESET);
+				return false;
+			}
+		} catch (Exception e) {
+			System.out.println("Login error: " + e.getMessage());
+			return false;
+		}
+	}
 //DECISION MAKING
-    
-public static KieContext evaluatePatients() {
-    KieServices ks = KieServices.Factory.get();
-    KieContainer kc = ks.getKieClasspathContainer();
-    KieContext kieContext = new KieContext(ks,kc);
-    return kieContext;
-}
-   
-public static void performEvaluation(KieContext kieContext, Doctor doctor) {
-    KieSession ksession = kieContext.getKieContainer().newKieSession("diabetesSession");
 
-    patients = DBManager.getPatientsByDoctorId(doctor.getId());
-    System.out.println(patients);
-    
+	public static KieContext evaluatePatients() {
+		KieServices ks = KieServices.Factory.get();
+		KieContainer kc = ks.getKieClasspathContainer();
+		KieContext kieContext = new KieContext(ks, kc);
+		return kieContext;
+	}
 
-    for(Patient patient : patients) {
-        System.out.println("Doctor id for patients is: " + patient.getDoctorId());
-        System.out.println("Patient id for treatments is: " + patient.getId());
-        ksession.insert(patient);
-    }
-    
-    
-    ksession.fireAllRules();
-    
-    
-    for(Patient patient : patients) {
-        
-        Set<Treatment> treatments = getTreatmentsForPatient(patient); 
-        System.out.println("Patient id for treatments is: " + patient.getId());
-       
-        for(Treatment treatment : treatments) {
-            DBManager.insertTreatmentForPatient(patient.getId(), treatment);
-            
-        }
-    }
-    
-    ksession.dispose();
-    System.out.println("Evaluation for Doctor ID " + doctor.getId() + " completed.");
-    
+	public static void performEvaluation(KieContext kieContext, Doctor doctor) {
+		KieSession ksession = kieContext.getKieContainer().newKieSession("diabetesSession");
 
-}
+		patients = DBManager.getPatientsByDoctorId(doctor.getId());
+		System.out.println(patients);
 
- 
-public static Map.Entry<Boolean, Doctor> addDoctor(){
-       System.out.println("Signing up new doctor.\n");
-       System.out.println("Type the username:\n");
-       String user = scanner.next();
-       System.out.println("Type the password:\n");
-       String password = scanner.next();
-       Doctor doc = new Doctor(user, password);
-       boolean exists = DBManager.doesDoctorExist(user);
-       if (!exists){
-           DBManager.insertDoctor(doc.getUsername(), doc.getPassword()); 
-           int doctorId = DBManager.getDoctorIdByUsername(user);
-           doc.setId(doctorId);
-           return new AbstractMap.SimpleEntry<>(true, doc);
-       }else{
-       DiabetesInterface.incorrectUsername(2);
-       return new AbstractMap.SimpleEntry<>(false, doc);
-       }
-      
-    }
+		for (Patient patient : patients) {
+			System.out.println("Doctor id for patients is: " + patient.getDoctorId());
+			System.out.println("Patient id for treatments is: " + patient.getId());
+			ksession.insert(patient);
+		}
+
+		ksession.fireAllRules();
+
+		for (Patient patient : patients) {
+
+			Set<Treatment> treatments = getTreatmentsForPatient(patient);
+			System.out.println("Patient id for treatments is: " + patient.getId());
+
+			for (Treatment treatment : treatments) {
+				DBManager.insertTreatmentForPatient(patient.getId(), treatment);
+
+			}
+		}
+
+		ksession.dispose();
+		System.out.println("Evaluation for Doctor ID " + doctor.getId() + " completed.");
+
+	}
+
+	public static Map.Entry<Boolean, Doctor> addDoctor() {
+		System.out.println("Signing up new doctor.\n");
+		String username;
+		String password;
+
+		do {
+			System.out.println("Type the username:\n"
+					+ "Usernames must start with a letter,"
+					+ "and can only contain letters, numbers, underscores, or dashes."
+					+ "Length must be between 6 and 20 characters.");
+			username = scanner.next();
+
+			if (!Utils.usernameIsValid(username)) {
+				System.out.println("Invalid username.");
+			}
+		} while (!Utils.usernameIsValid(username));
+
+		do {
+			System.out.println("Type the password:\n"
+					+ "Passwords must be at least 8 characters long, "
+					+ "and include at least one uppercase letter, one lowercase letter, "
+					+ "");
+			password = scanner.next();
+
+			if (!Utils.passwordIsValid(password)) {
+				System.out.println("Invalid password. Passwords must be at least 8 characters long, "
+						+ "and include at least one uppercase letter, one lowercase letter, "
+						+ "one digit, and one special character (!@#$%^&*).");
+			}
+		} while (!Utils.passwordIsValid(password));
+
+		Doctor doc = new Doctor(username, password);
+		boolean exists = DBManager.doesDoctorExist(username);
+		if (!exists) {
+			DBManager.insertDoctor(doc.getUsername(), doc.getPassword());
+			int doctorId = DBManager.getDoctorIdByUsername(username);
+			doc.setId(doctorId);
+			return new AbstractMap.SimpleEntry<>(true, doc);
+		} else {
+			DiabetesInterface.incorrectUsername(2);
+			return new AbstractMap.SimpleEntry<>(false, doc);
+		}
+
+	}
 
 //CREDENTIAL VALIDATION
 
+	public static Map.Entry<Boolean, Doctor> isUserCorrect() {
+		boolean doctorExists = false;
+		String username = "";
+		Doctor doc = null;
+		boolean invalidChoice = false;
+		String input;
 
-public static Map.Entry<Boolean, Doctor> isUserCorrect() {
-    Scanner scanner = new Scanner(System.in);
-    boolean doctorExists = false;
-    String username = "";
-    Doctor doc = null;
+		while (!doctorExists) {
+			System.out.println("Please type the username:");
+			username = scanner.next();
+			scanner.nextLine();
 
-    while (!doctorExists) {
-        System.out.println("Please type the username:");
-        username = scanner.next();
+			if (!DBManager.doesDoctorExist(username)) {
 
-        if (!DBManager.doesDoctorExist(username)) {
-            System.out.println("No doctor registered under this username.");
-            System.out.println("1. Retry typing the username");
-            System.out.println("2. Sign up");
-            System.out.print("Choose an option: ");
-            int choice = scanner.nextInt();
+				do {
+					if (!invalidChoice) {
+						System.out.println("No doctor registered under this username.");
+					}
+					System.out.println("1. Retry typing the username");
+					System.out.println("2. Sign up");
 
-            if (choice == 2) {
-                // Redirect to signup
-                return new AbstractMap.SimpleEntry<>(false, null);
-            } // If the user chooses to retry, the loop will continue
-        } else {
-            doctorExists = true; // Doctor exists
-            // Proceed with password verification
-            boolean passwordCorrect = false;
-            while (!passwordCorrect) {
-                System.out.println("Please type the password:");
-                String password = scanner.next();
-                passwordCorrect = DBManager.isPasswordCorrect(username, Utils.hashPassword(password));
-                if (passwordCorrect) {
-                    // Password is correct, create Doctor object
-                    int doctorId = DBManager.getDoctorIdByUsername(username);
-                    doc = new Doctor(username, password);
-                    doc.setId(doctorId); // Assuming Doctor class has an setId method
-                    System.out.println("Login successful.");
-                    return new AbstractMap.SimpleEntry<>(true, doc);
-                } else {
-                    System.out.println("Incorrect password. Please try again.");
-                    System.out.println("1. Retry typing the password");
-                    System.out.println("2. Return to username input");
-                    System.out.print("Choose an option: ");
-                    int choice = scanner.nextInt();
-                    if (choice == 2) {
-                        // Break out to the outer loop to re-enter the username
-                        doctorExists = false; 
-                        break;
-                    }
-                    // If the user chooses to retry, the loop will continue to prompt for the password
-                }
-            }
-        }
-    }
-    // This return statement is a fallback and should never be reached due to the loops, but is necessary to compile
-    return new AbstractMap.SimpleEntry<>(false, null);
+					System.out.print("Choose an option: ");
+					input = scanner.nextLine().trim();
+
+					if (!Utils.choiceIsValid(input)) {
+						System.out.println("Invalid choice. Please enter a non-negative integer.");
+						invalidChoice = true;
+
+					} else if (Integer.parseInt(input) != 1 && Integer.parseInt(input) != 2) {
+						System.out.println("Invalid choice. Please enter 1 or 2.");
+						invalidChoice = true;
+					} else {
+						invalidChoice = false;
+					}
+				} while (!Utils.choiceIsValid(input) || (Integer.parseInt(input) != 1 && Integer.parseInt(input) != 2));
+
+				int choice = Integer.parseInt(input);
+
+				switch (choice) {
+				case 1:
+					continue;
+
+				case 2:
+					return new AbstractMap.SimpleEntry<>(false, null);
+				}
+
+			} else {
+				doctorExists = true; // Doctor exists
+				// Proceed with password verification
+				boolean passwordCorrect = false;
+				while (!passwordCorrect) {
+					System.out.println("Please type the password:");
+					String password = scanner.next();
+					scanner.nextLine();
+					passwordCorrect = DBManager.isPasswordCorrect(username, Utils.hashPassword(password));
+					if (passwordCorrect) {
+						// Password is correct, create Doctor object
+						int doctorId = DBManager.getDoctorIdByUsername(username);
+						doc = new Doctor(username, password);
+						doc.setId(doctorId); // Assuming Doctor class has an setId method
+						System.out.println("Login successful.");
+						return new AbstractMap.SimpleEntry<>(true, doc);
+					} else {
+						invalidChoice = false;
+						do {
+							if (!invalidChoice) {
+								System.out.println("Incorrect password. Please try again.");
+							}
+							System.out.println("1. Retry typing the password");
+							System.out.println("2. Return to username input");
+
+							System.out.print("Choose an option: ");
+							input = scanner.nextLine().trim();
+
+							if (!Utils.choiceIsValid(input)) {
+								System.out.println("Invalid choice. Please enter a non-negative integer.");
+								invalidChoice = true;
+
+							} else if (Integer.parseInt(input) != 1 && Integer.parseInt(input) != 2) {
+								System.out.println("Invalid choice. Please enter 1 or 2.");
+								invalidChoice = true;
+							} else {
+								invalidChoice = false;
+							}
+						} while (!Utils.choiceIsValid(input)
+								|| (Integer.parseInt(input) != 1 && Integer.parseInt(input) != 2));
+
+						int choice = Integer.parseInt(input);
+
+						if (choice == 2) {
+							// Break out to the outer loop to re-enter the username
+							doctorExists = false;
+							break;
+						}
+						// If the user chooses to retry, the loop will continue to prompt for the
+						// password
+					}
+				}
+			}
+		}
+		// This return statement is a fallback and should never be reached due to the
+		// loops, but is necessary to compile
+		return new AbstractMap.SimpleEntry<>(false, null);
+	}
+
+	public static void incorrectPassword() {
+		System.out.println("Incorrect Password. Try again\n");
+	}
+
+	public static void incorrectUsername(int prompt) {
+		if (prompt == 1) {
+			System.out.println("No doctor registered under that username. Try again\n");
+		} else if (prompt == 2) {
+			System.out.println("Username already in use. Choose another one.\n ");
+		}
+
+	}
+
+	public static Set<Treatment> getTreatmentsForPatient(Patient patient) {
+		return patient.getTreatments();
+	}
+
+	public static void invalidChoicePrompt() {
+		System.out.println("Invalid choice. Please try again.");
+	}
+
 }
-
-
-
-
-
- 
-public static void incorrectPassword(){
-    System.out.println("Incorrect Password. Try again\n");    
-}
-
-public static void incorrectUsername(int prompt){
-    if(prompt == 1){
-        System.out.println("No doctor registered under that username. Try again\n");
-    } else if(prompt ==2){ 
-        System.out.println("Username already in use. Choose another one.\n ");
-}
-        
-}
-public static Set<Treatment> getTreatmentsForPatient(Patient patient) {
-    return patient.getTreatments();
-}
-
-}
-

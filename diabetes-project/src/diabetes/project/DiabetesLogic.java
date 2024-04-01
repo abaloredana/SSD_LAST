@@ -6,40 +6,37 @@ package diabetes.project;
 
 import java.util.Map;
 
-
-    
-   
 public class DiabetesLogic {
-    public static void main(String[] args) {
-        int choice = DiabetesInterface.welcomePrompt();
+	/**
+	 * @param args the command line arguments
+	 */
 
-        switch(choice) {
-            case 1:
-                Map.Entry<Boolean, Doctor> validateLogin = DiabetesInterface.isUserCorrect();
-                if (!validateLogin.getKey() && validateLogin.getValue() == null) {
-                    // User opted to sign up
-                    choice = 2; // Explicitly chosen signup
-                    // No 'break' to allow fall-through to case 2
-                } else {
-                    // Proceed with the login process
-                    if (validateLogin.getKey()) {
-                        // Successful login
-                        DiabetesInterface.logInVeredict(true);
-                        DiabetesInterface.menu(validateLogin.getValue());
-                    }
-                    break; // Ensure we break here to not fall through to case 2 after a successful login
-                }
+	public static void main(String[] args) {
+		// DBManager.createTables();
+		int choice = DiabetesInterface.welcomePrompt();
 
-            case 2:
-                if (choice == 2) { // Check if we've fallen through from case 1 or directly chosen option 2
-                    Map.Entry<Boolean, Doctor> validateSignup = DiabetesInterface.addDoctor();
-                    if (validateSignup.getKey()) {
-                        DiabetesInterface.menu(validateSignup.getValue());
-                    }
-                }
-                break;
+		switch (choice) {
+		case 1:
+			Map.Entry<Boolean, Doctor> validateLogin = DiabetesInterface.isUserCorrect();
+			boolean authorized = validateLogin.getKey();
+			Doctor logedInDoctor = validateLogin.getValue();
 
-            // Other cases if necessary
-        }
-    }
+			if (authorized && logedInDoctor != null) {
+				DiabetesInterface.logInVeredict(authorized);
+				DiabetesInterface.menu(logedInDoctor);
+			}
+
+		case 2:
+			Map.Entry<Boolean, Doctor> validateSignup = DiabetesInterface.addDoctor();
+			boolean authorized2 = validateSignup.getKey();
+			Doctor signedUpDoctor = validateSignup.getValue();
+			if (authorized2) {
+				DiabetesInterface.menu(signedUpDoctor);
+			}
+		default:
+			DiabetesInterface.invalidChoicePrompt();
+
+		}
+
+	}
 }
