@@ -4,15 +4,6 @@
  */
 package diabetes.project;
 
-import java.io.IOException;
-
-/**
- *
- * @author loredana
- */
-
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
@@ -21,7 +12,11 @@ import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import java.util.AbstractMap;
 import java.util.Map;
-import java.util.Scanner;
+
+/**
+*
+* @author loredana
+*/
 
 public class DiabetesInterface {
 
@@ -32,8 +27,9 @@ public class DiabetesInterface {
 	public static Set<Patient> patients = new HashSet<>();
 	private static Scanner scanner = new Scanner(System.in);
 
+// DOCTOR-RELATED METHODS
 	public static void menu(Doctor doctor) {
-		Utils.clearConsole();
+		
 		KieContext kieContext = null;
 		while (true) {
 
@@ -149,7 +145,7 @@ public class DiabetesInterface {
 				patient.getInsulinProd(), patient.isInsulinRes(), patient.isHypotension(), patient.isDyslipidemia(),
 				patient.isPad(), patient.isNafld(), patient.isOsteoporosis(), doctor);
 
-		System.out.println("Patient added successfully.");
+		System.out.println(ANSI_GREEN + "Patient added successfully." + ANSI_RESET);
 		return patients;
 	}
 
@@ -164,8 +160,6 @@ public class DiabetesInterface {
 		} while (!Utils.yesNoIsValid(input));
 		return input.equals("y") || input.equals("Y");
 	}
-
-	// DOCTOR METHODS
 
 	public static int welcomePrompt() {
 		String input;
@@ -333,7 +327,9 @@ public class DiabetesInterface {
 							|| (Integer.parseInt(input) != 1 && Integer.parseInt(input) != 2));
 					int choice = Integer.parseInt(input);
 					if (choice == 2) {
+						System.out.println("Redirecting to login...");
 						return false;
+
 					}
 
 				}
@@ -355,6 +351,8 @@ public class DiabetesInterface {
 		DBManager.insertDoctor(doc.getUsername(), doc.getPassword());
 		int doctorId = DBManager.getDoctorIdByUsername(username);
 		doc.setId(doctorId);
+		System.out.println(ANSI_GREEN + "Signup successful" + ANSI_RESET);
+		System.out.println("Redirecting to login...");
 		return true;
 	}
 

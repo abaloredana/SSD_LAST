@@ -93,24 +93,7 @@ public class Utils {
 
 	}
 	
-	public static void clearConsole() {
-	    try {
-	        String operatingSystem = System.getProperty("os.name"); // Check the current operating system
-
-	        if (operatingSystem.contains("Windows")) {
-	            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor(); // Clear console for Windows.
-	        } else {
-	            // Clears the terminal for Unix and Unix-like systems including macOS.
-	            System.out.print("\033[H\033[2J");
-	            System.out.flush();
-	            // Alternatively, you can execute the `clear` command.
-	            // new ProcessBuilder("clear").inheritIO().start().waitFor();
-	        }
-	    } catch (IOException | InterruptedException ex) {
-	        ((Throwable) ex).printStackTrace(); // Print the stack trace for debugging purposes
-	    }
-	    // No finally block is needed if you don't have any specific cleanup to do after try-catch
-	}
+	
 
 
 

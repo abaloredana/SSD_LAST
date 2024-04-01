@@ -13,17 +13,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author carlo
  */
 public class DBManager {
-	private static final String ANSI_RED = "\u001B[31m";
-	private static final String ANSI_GREEN = "\u001B[32m";
-	private static final String ANSI_RESET = "\u001B[0m";
+	
 
 	public static void generateTablesIfNeeded() {
 
@@ -60,7 +56,7 @@ public class DBManager {
 			Class.forName("org.sqlite.JDBC");
 			Connection c = DriverManager.getConnection("jdbc:sqlite:./db/treatments.db");
 			c.createStatement().execute("PRAGMA foreign_keys=ON");
-			System.out.println("Database connection opened.");
+			
 
 			// Create tables: begin
 			Statement stmt3 = c.createStatement();
@@ -88,10 +84,10 @@ public class DBManager {
 
 			stmt2.executeUpdate(sql2);
 			stmt2.close();
-			System.out.println("Tables created.");
+			//tables are now created
 
 			c.close();
-			System.out.println("Database connection closed.");
+	
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("inside catch");
@@ -225,13 +221,8 @@ public class DBManager {
 			pstmt.setBoolean(10, nafld);
 			pstmt.setBoolean(11, osteoporosis);
 			pstmt.setInt(12, doctor.getId()); // Set the doctor_id foreign key
-			// Ejecutar la sentencia SQL de inserción
-			int filasInsertadas = pstmt.executeUpdate();
-			if (filasInsertadas > 0) {
-				System.out.println("Patient inserted succesfuly.");
-			} else {
-				System.out.println("Error when inserting patient.");
-			}
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -302,8 +293,7 @@ public class DBManager {
 			pstmt.setString(1, username);
 			pstmt.setString(2, passwordHash);
 			pstmt.executeUpdate();
-			System.out.println(ANSI_GREEN + "Signup successful" + ANSI_RESET);
-			System.out.println("Redirecting to login...");
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
