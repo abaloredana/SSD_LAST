@@ -63,7 +63,7 @@ public class DiabetesInterface {
 					kieContext = evaluatePatients();
 				}
 				performEvaluation(kieContext, doctor);
-				
+
 				break;
 			case 3:
 				System.exit(0);
@@ -188,17 +188,15 @@ public class DiabetesInterface {
 	}
 
 	public static void logInVeredict(boolean authorized) {
-		
 
-			if (authorized) {
-				System.out.println(ANSI_GREEN + "Login successful" + ANSI_RESET);
-				
-			} else {
-				System.out.println(ANSI_RED + "Login failed" + ANSI_RESET);
-				
-			}
-	
-		
+		if (authorized) {
+			System.out.println(ANSI_GREEN + "Login successful" + ANSI_RESET);
+
+		} else {
+			System.out.println(ANSI_RED + "Login failed" + ANSI_RESET);
+
+		}
+
 	}
 //DECISION MAKING
 
@@ -210,15 +208,13 @@ public class DiabetesInterface {
 	}
 
 	public static void performEvaluation(KieContext kieContext, Doctor doctor) {
-		
-		
+
 		KieSession ksession = kieContext.getKieContainer().newKieSession("diabetesSession");
 		Set<Treatment> treatments;
 		patients = DBManager.getPatientsByDoctorId(doctor.getId());
 
 		for (Patient patient : patients) {
-			
-			
+
 			ksession.insert(patient);
 		}
 
@@ -226,8 +222,7 @@ public class DiabetesInterface {
 
 		for (Patient patient : patients) {
 
-			 treatments = patient.getTreatments();
-			
+			treatments = patient.getTreatments();
 
 			for (Treatment treatment : treatments) {
 				DBManager.insertTreatmentForPatient(patient.getId(), treatment);
@@ -236,17 +231,18 @@ public class DiabetesInterface {
 		}
 
 		ksession.dispose();
-		
+
 		System.out.println("Evaluation completed for patients:");
 		int id = displayPatients();
-		System.out.println("Treatments that can be used to treat patient " + DBManager.getPatientNameById(id).toUpperCase() + ":");
+		System.out.println(
+				"Treatments that can be used to treat patient " + DBManager.getPatientNameById(id).toUpperCase() + ":");
 		displayTreatments(id);
 		System.out.println("Press enter to return to the main menu...");
 		scanner.nextLine();
 	}
-	
+
 	public static int displayPatients() {
-		
+
 		String input;
 		int id;
 		Set<Integer> ids = new HashSet<>();
@@ -254,41 +250,43 @@ public class DiabetesInterface {
 
 			System.out.println(patient.getId() + "-" + patient.getName());
 			ids.add(patient.getId());
-			
+
 		}
-		
+
 		do {
 			System.out.println("Select the number of the patient you want to see the treatments of: ");
 			input = scanner.nextLine().trim();
 
 			if (!Utils.choiceIsValid(input)) {
 				System.out.println("Invalid number. Please enter a non-negative integer.");
-			}else {
-				if(!ids.contains(Integer.parseInt(input))) {
+			} else {
+				if (!ids.contains(Integer.parseInt(input))) {
 					System.out.println("Invalid number. Please enter one of the listed numbers.");
 				}
 			}
 		} while (!Utils.choiceIsValid(input) || !ids.contains(Integer.parseInt(input)));
 
 		id = Integer.parseInt(input);
-		//scanner.nextLine();
+		// scanner.nextLine();
 		return id;
 	}
-	
+
 	public static void displayTreatments(int patientId) {
-		
+
 		Set<Treatment> treatments = DBManager.getTreatmentsByPatientId(patientId);
-		if(treatments.isEmpty()) {
-			System.out.println(ANSI_BLUE +"No treatments were added.");
-			System.out.println("Patient´s characteristics are too rare to be analyzed by this system. Consider personalized medical evaluation and monitoring for their condition."  + ANSI_RESET);
+		if (treatments.isEmpty()) {
+			System.out.println(ANSI_BLUE + "No treatments were added.");
+			System.out.println(
+					"Patient´s characteristics are too rare to be analyzed by this system. Consider personalized medical evaluation and monitoring for their condition."
+							+ ANSI_RESET);
 		}
-		
+
 		for (Treatment treatment : treatments) {
-					
-					System.out.println(treatment);
-					
-				}
-		
+
+			System.out.println(treatment);
+
+		}
+
 	}
 
 	public static boolean addDoctor() {
@@ -321,9 +319,6 @@ public class DiabetesInterface {
 
 						System.out.print("Choose an option: ");
 						input = scanner.nextLine().trim();
-						System.out.println(input);
-						scanner.nextLine();
-						System.out.println(input);
 						if (!Utils.choiceIsValid(input)) {
 							System.out.println("Invalid choice. Please enter a non-negative integer.");
 							invalidChoice = true;
@@ -425,7 +420,7 @@ public class DiabetesInterface {
 						int doctorId = DBManager.getDoctorIdByUsername(username);
 						doc = new Doctor(username, password);
 						doc.setId(doctorId); // Assuming Doctor class has an setId method
-						
+
 						return new AbstractMap.SimpleEntry<>(true, doc);
 					} else {
 						invalidChoice = false;
@@ -482,8 +477,6 @@ public class DiabetesInterface {
 		}
 
 	}
-
-	
 
 	public static void invalidChoicePrompt() {
 		System.out.println("Invalid choice. Please try again.");
