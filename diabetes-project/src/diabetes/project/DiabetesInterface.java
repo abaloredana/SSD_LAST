@@ -59,6 +59,7 @@ public class DiabetesInterface {
 					kieContext = evaluatePatients();
 				}
 				performEvaluation(kieContext, doctor);
+				
 				break;
 			case 3:
 				System.exit(0);
@@ -121,14 +122,12 @@ public class DiabetesInterface {
 			System.out.println("Enter insulin production (1 = NO INSULIN PRODUCTION, "
 					+ "2 = HYPOINSULINEMIA, 3 = NORMOINSULINEMIA, 4 = HYPERINSULINEMIA):");
 			input = scanner.nextLine().trim();
-			if (Utils.insulinProdIsValid(input)) {
+			if (!Utils.insulinProdIsValid(input)) {
 				System.out.println("Invalid input. Please enter a number between 1 and 4.");
 			}
-		} while (Utils.insulinProdIsValid(input));
+		} while (!Utils.insulinProdIsValid(input));
 
 		int insulinProd = Integer.parseInt(input);
-
-		scanner.nextLine();
 
 		boolean insulinRes = promptYesNo("Is insulin resistant? (y/n):");
 		boolean hypotension = promptYesNo("Has hypotension? (y/n):");
@@ -168,8 +167,8 @@ public class DiabetesInterface {
 		String input;
 		do {
 			System.out.println("Welcome to our DSS!\n");
-			System.out.println("1.Login\n");
-			System.out.println("2.Sign Up \n");
+			System.out.println("1. Sign Up\n");
+			System.out.println("2. Log In\n");
 
 			System.out.print("Choose an option: ");
 			input = scanner.nextLine().trim();
@@ -215,8 +214,8 @@ public class DiabetesInterface {
 		System.out.println(patients);
 
 		for (Patient patient : patients) {
-			System.out.println("Doctor id for patients is: " + patient.getDoctorId());
-			System.out.println("Patient id for treatments is: " + patient.getId());
+			
+			
 			ksession.insert(patient);
 		}
 
@@ -225,7 +224,7 @@ public class DiabetesInterface {
 		for (Patient patient : patients) {
 
 			Set<Treatment> treatments = getTreatmentsForPatient(patient);
-			System.out.println("Patient id for treatments is: " + patient.getId());
+			
 
 			for (Treatment treatment : treatments) {
 				DBManager.insertTreatmentForPatient(patient.getId(), treatment);
@@ -238,45 +237,74 @@ public class DiabetesInterface {
 
 	}
 
-	public static Map.Entry<Boolean, Doctor> addDoctor() {
+	public static boolean addDoctor() {
 		System.out.println("Signing up new doctor.\n");
 		String username;
 		String password;
+		String input;
+		boolean invalidChoice = false;
+		boolean exists = false;
+		Doctor doc;
 
 		do {
 			System.out.println("Type the username:\n" + "Usernames must start with a letter,"
 					+ "and can only contain letters, numbers, underscores, or dashes."
 					+ "Length must be between 6 and 20 characters.");
 			username = scanner.next();
+			scanner.nextLine();
 
 			if (!Utils.usernameIsValid(username)) {
 				System.out.println("Invalid username.");
+			} else {
+				exists = DBManager.doesDoctorExist(username);
+				if (exists) {
+					do {
+						if (!invalidChoice) {
+							System.out.println("Username already exists.");
+						}
+						System.out.println("1. Retry with another username");
+						System.out.println("2. Log in");
+
+						System.out.print("Choose an option: ");
+						input = scanner.nextLine().trim();
+
+						if (!Utils.choiceIsValid(input)) {
+							System.out.println("Invalid choice. Please enter a non-negative integer.");
+							invalidChoice = true;
+
+						} else if (Integer.parseInt(input) != 1 && Integer.parseInt(input) != 2) {
+							System.out.println("Invalid choice. Please enter 1 or 2.");
+							invalidChoice = true;
+						} else {
+							invalidChoice = false;
+						}
+					} while (!Utils.choiceIsValid(input)
+							|| (Integer.parseInt(input) != 1 && Integer.parseInt(input) != 2));
+					int choice = Integer.parseInt(input);
+					if (choice == 2) {
+						return false;
+					}
+
+				}
 			}
-		} while (!Utils.usernameIsValid(username));
+		} while (!Utils.usernameIsValid(username) || exists);
 
 		do {
 			System.out.println("Type the password:\n" + "Passwords must be at least 8 characters long, "
 					+ "and include at least one uppercase letter, one lowercase letter, "
 					+ "one digit, and one special character (!@#$%^&*).");
 			password = scanner.next();
-
+			scanner.nextLine();
 			if (!Utils.passwordIsValid(password)) {
 				System.out.println("Invalid password.");
 			}
 		} while (!Utils.passwordIsValid(password));
 
-		Doctor doc = new Doctor(username, password);
-		boolean exists = DBManager.doesDoctorExist(username);
-		if (!exists) {
-			DBManager.insertDoctor(doc.getUsername(), doc.getPassword());
-			int doctorId = DBManager.getDoctorIdByUsername(username);
-			doc.setId(doctorId);
-			return new AbstractMap.SimpleEntry<>(true, doc);
-		} else {
-			DiabetesInterface.incorrectUsername(2);
-			return new AbstractMap.SimpleEntry<>(false, doc);
-		}
-
+		doc = new Doctor(username, password);
+		DBManager.insertDoctor(doc.getUsername(), doc.getPassword());
+		int doctorId = DBManager.getDoctorIdByUsername(username);
+		doc.setId(doctorId);
+		return true;
 	}
 
 //CREDENTIAL VALIDATION
@@ -341,7 +369,7 @@ public class DiabetesInterface {
 						int doctorId = DBManager.getDoctorIdByUsername(username);
 						doc = new Doctor(username, password);
 						doc.setId(doctorId); // Assuming Doctor class has an setId method
-						System.out.println("Login successful.");
+						
 						return new AbstractMap.SimpleEntry<>(true, doc);
 					} else {
 						invalidChoice = false;

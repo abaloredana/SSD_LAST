@@ -4,6 +4,7 @@
  */
 package diabetes.project;
 
+import java.sql.SQLException;
 import java.util.Map;
 
 public class DiabetesLogic {
@@ -12,11 +13,38 @@ public class DiabetesLogic {
 	 */
 
 	public static void main(String[] args) {
-		// DBManager.createTables();
+		
+		boolean doctorTableExists = false;
+		try {
+			doctorTableExists = DBManager.doesTableExist("Doctor");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		boolean patientTableExists = false;
+		try {
+			patientTableExists = DBManager.doesTableExist("Patient");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		boolean treatmentTableExists = false;
+		try {
+			treatmentTableExists = DBManager.doesTableExist("Treatment");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(!doctorTableExists && !patientTableExists && !treatmentTableExists) {
+			DBManager.createTables();
+		}
+		
 		int choice = DiabetesInterface.welcomePrompt();
 
 		switch (choice) {
 		case 1:
+			DiabetesInterface.addDoctor();
+		case 2:
 			Map.Entry<Boolean, Doctor> validateLogin = DiabetesInterface.isUserCorrect();
 			boolean authorized = validateLogin.getKey();
 			Doctor logedInDoctor = validateLogin.getValue();
@@ -25,14 +53,7 @@ public class DiabetesLogic {
 				DiabetesInterface.logInVeredict(authorized);
 				DiabetesInterface.menu(logedInDoctor);
 			}
-
-		case 2:
-			Map.Entry<Boolean, Doctor> validateSignup = DiabetesInterface.addDoctor();
-			boolean authorized2 = validateSignup.getKey();
-			Doctor signedUpDoctor = validateSignup.getValue();
-			if (authorized2) {
-				DiabetesInterface.menu(signedUpDoctor);
-			}
+			
 		default:
 			DiabetesInterface.invalidChoicePrompt();
 
