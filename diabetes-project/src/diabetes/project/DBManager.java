@@ -221,7 +221,7 @@ public class DBManager {
 			pstmt.setBoolean(10, nafld);
 			pstmt.setBoolean(11, osteoporosis);
 			pstmt.setInt(12, doctor.getId()); // Set the doctor_id foreign key
-			
+			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
