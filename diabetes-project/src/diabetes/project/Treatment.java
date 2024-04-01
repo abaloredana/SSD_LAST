@@ -9,11 +9,20 @@ package diabetes.project;
  * @author loredana
  */
 public class Treatment {
-    private String name;
-    private boolean shouldBeApplied;
-    private double priority;
+    public String name;
+    public boolean shouldBeApplied;
+    public double priority;
+    public  int id;
 
-    public double getPriority() {
+    public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public double getPriority() {
         return priority;
     }
 
@@ -21,12 +30,14 @@ public class Treatment {
         this.priority = priority;
     }
 
-    @Override
-    public String toString() {
-        return "Treatment{" + "name=" + name + ", shouldBeApplied=" + shouldBeApplied + ", priority=" + priority + '}';
-    }
+   
 
-    public Treatment(String name, boolean shouldBeApplied, double priority) {
+    @Override
+	public String toString() {
+		return "Treatment name = " + name ;
+	}
+
+	public Treatment(String name, boolean shouldBeApplied, double priority) {
         this.name = name;
         this.shouldBeApplied = shouldBeApplied;
         this.priority = priority;

@@ -17,7 +17,7 @@ import java.util.Set;
 public class Doctor {
     public String username;
     public String password;
-    private int id;
+    public int id;
     //public static Set<Patient> patients = new HashSet<>();
 
     public void setId(int id) {

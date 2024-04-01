@@ -13,51 +13,42 @@ public class DiabetesLogic {
 	 */
 
 	public static void main(String[] args) {
-		
-		boolean doctorTableExists = false;
-		try {
-			doctorTableExists = DBManager.doesTableExist("Doctor");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		boolean patientTableExists = false;
-		try {
-			patientTableExists = DBManager.doesTableExist("Patient");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		boolean treatmentTableExists = false;
-		try {
-			treatmentTableExists = DBManager.doesTableExist("Treatment");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if(!doctorTableExists && !patientTableExists && !treatmentTableExists) {
-			DBManager.createTables();
-		}
-		
+
+		Utils.suppressDroolsLogMessages();
+		DBManager.generateTablesIfNeeded();
+
 		int choice = DiabetesInterface.welcomePrompt();
 
 		switch (choice) {
 		case 1:
-			DiabetesInterface.addDoctor();
+			signUpFlow();
+			break;
 		case 2:
-			Map.Entry<Boolean, Doctor> validateLogin = DiabetesInterface.isUserCorrect();
-			boolean authorized = validateLogin.getKey();
-			Doctor logedInDoctor = validateLogin.getValue();
-
-			if (authorized && logedInDoctor != null) {
-				DiabetesInterface.logInVeredict(authorized);
-				DiabetesInterface.menu(logedInDoctor);
-			}
-			
+			logInFlow();
+			break;
 		default:
 			DiabetesInterface.invalidChoicePrompt();
 
 		}
 
+	}
+
+	public static void signUpFlow() {
+		DiabetesInterface.addDoctor();
+		logInFlow();
+	}
+
+	public static void logInFlow() {
+		Map.Entry<Boolean, Doctor> validateLogin = DiabetesInterface.isUserCorrect();
+		boolean authorized = validateLogin.getKey();
+		Doctor loggedInDoctor = validateLogin.getValue();
+
+		if (authorized && loggedInDoctor != null) {
+			DiabetesInterface.logInVeredict(authorized);
+			DiabetesInterface.menu(loggedInDoctor);
+		} else {
+			// If authorization fails, call the addDoctorFlow again
+			signUpFlow();
+		}
 	}
 }

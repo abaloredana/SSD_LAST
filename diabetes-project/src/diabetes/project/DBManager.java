@@ -24,6 +24,35 @@ public class DBManager {
 	private static final String ANSI_RED = "\u001B[31m";
 	private static final String ANSI_GREEN = "\u001B[32m";
 	private static final String ANSI_RESET = "\u001B[0m";
+
+	public static void generateTablesIfNeeded() {
+
+		boolean doctorTableExists = false;
+		try {
+			doctorTableExists = DBManager.doesTableExist("Doctor");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		boolean patientTableExists = false;
+		try {
+			patientTableExists = DBManager.doesTableExist("Patient");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		boolean treatmentTableExists = false;
+		try {
+			treatmentTableExists = DBManager.doesTableExist("Treatment");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (!doctorTableExists && !patientTableExists && !treatmentTableExists) {
+			DBManager.createTables();
+		}
+	}
+
 	public static void createTables() {
 		try {
 
@@ -208,54 +237,28 @@ public class DBManager {
 		}
 	}
 
-	public static int getPatientIdByDoctorId(String name) {
-		String sql = "SELECT id FROM patient WHERE name = ?";
+	public static String getPatientNameById(int patientId) {
+		String patientName = null;
 		String url = "jdbc:sqlite:./db/treatments.db";
-		int id = 0;
+		String sql = "SELECT name FROM Patient WHERE id = ?";
+
 		try (Connection conn = DriverManager.getConnection(url); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-			pstmt.setString(1, name);
+			pstmt.setInt(1, patientId);
 
 			try (ResultSet rs = pstmt.executeQuery()) {
-
 				if (rs.next()) {
-
-					id = rs.getInt("id");
-
+					patientName = rs.getString("name");
 				} else {
-					System.out.println("No se encontró ningún paciente con el nombre '" + name + "'.");
+					System.out.println("No patient found with ID: " + patientId);
 				}
 			}
 		} catch (SQLException e) {
+			System.out.println("Database error occurred while retrieving the name for patient ID: " + patientId);
 			e.printStackTrace();
 		}
 
-		return id;
-	}
-
-	public static Set<Integer> getPatientIdsByDoctorId(int doctorId) {
-		Set<Integer> patientIds = new HashSet<>();
-		String url = "jdbc:sqlite:./db/treatments.db";
-		String sql = "SELECT id FROM Patient WHERE doctor_id = ?";
-
-		try (Connection conn = DriverManager.getConnection(url); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-			pstmt.setInt(1, doctorId);
-
-			try (ResultSet rs = pstmt.executeQuery()) {
-
-				while (rs.next()) {
-					int patientId = rs.getInt("id");
-					patientIds.add(patientId);
-				}
-				System.out.println("Found " + patientIds.size() + " patients for Doctor ID " + doctorId);
-			}
-		} catch (SQLException e) {
-			System.out.println("Database error occurred while retrieving patient IDs");
-			e.printStackTrace();
-		}
-
-		return patientIds;
+		return patientName;
 	}
 
 	public static Set<Patient> getPatientsByDoctorId(int doctorId) {
@@ -364,7 +367,7 @@ public class DBManager {
 				if (rs.next()) {
 					// Retrieve the doctor's ID from the query result
 					doctorId = rs.getInt("id");
-					
+
 				} else {
 					System.out.println("No doctor found with the username: " + username);
 				}
@@ -381,8 +384,6 @@ public class DBManager {
 	public static void insertTreatmentForPatient(int patientId, Treatment treatment) {
 
 		if (treatmentExists(patientId, treatment)) {
-			System.out
-					.println("Treatment already exists for patient ID: " + patientId + " and will not be re-inserted.");
 			return; // Exit the method early if the treatment already exists
 		}
 
@@ -397,11 +398,6 @@ public class DBManager {
 			pstmt.setDouble(4, treatment.getPriority());
 
 			int rowsAffected = pstmt.executeUpdate();
-			if (rowsAffected > 0) {
-				System.out.println("Treatment inserted successfully. ");
-			} else {
-				System.out.println("Failed to insert the treatment.");
-			}
 		} catch (SQLException e) {
 			System.out.println("Database error occurred while inserting a new treatment");
 			e.printStackTrace();
@@ -430,4 +426,32 @@ public class DBManager {
 		return false; // Default to false if an error occurs or no match found
 	}
 
+	public static Set<Treatment> getTreatmentsByPatientId(int patientId) {
+		Set<Treatment> treatments = new HashSet<>();
+		String url = "jdbc:sqlite:./db/treatments.db";
+		String sql = "SELECT * FROM Treatment WHERE patient_id = ?";
+
+		try (Connection conn = DriverManager.getConnection(url); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+			pstmt.setInt(1, patientId);
+
+			try (ResultSet rs = pstmt.executeQuery()) {
+				while (rs.next()) {
+					int id = rs.getInt("id");
+					String name = rs.getString("name");
+					boolean shouldBeApplied = rs.getBoolean("shouldBeApplied");
+					double priority = rs.getDouble("priority");
+
+					Treatment treatment = new Treatment(name, shouldBeApplied, priority);
+					treatment.setId(id);
+					treatments.add(treatment);
+				}
+			}
+		} catch (SQLException e) {
+			System.out.println("Database error occurred while retrieving treatments for patient ID: " + patientId);
+			e.printStackTrace();
+		}
+
+		return treatments;
+	}
 }
