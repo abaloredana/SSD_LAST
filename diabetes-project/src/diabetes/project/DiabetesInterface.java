@@ -20,10 +20,7 @@ import java.util.Map;
 
 public class DiabetesInterface {
 
-	private static final String ANSI_RED = "\u001B[31m";
-	private static final String ANSI_GREEN = "\u001B[32m";
-	private static final String ANSI_BLUE = "\u001B[94m";
-	private static final String ANSI_RESET = "\u001B[0m";
+	
 	public static Set<Patient> patients = new HashSet<>();
 	private static Scanner scanner = new Scanner(System.in);
 
@@ -145,7 +142,7 @@ public class DiabetesInterface {
 				patient.getInsulinProd(), patient.isInsulinRes(), patient.isHypotension(), patient.isDyslipidemia(),
 				patient.isPad(), patient.isNafld(), patient.isOsteoporosis(), doctor);
 
-		System.out.println(ANSI_GREEN + "Patient added successfully." + ANSI_RESET);
+		System.out.println("Patient added successfully.");
 		return patients;
 	}
 
@@ -184,10 +181,10 @@ public class DiabetesInterface {
 	public static void logInVeredict(boolean authorized) {
 
 		if (authorized) {
-			System.out.println(ANSI_GREEN + "Login successful" + ANSI_RESET);
+			System.out.println( "Login successful" );
 
 		} else {
-			System.out.println(ANSI_RED + "Login failed" + ANSI_RESET);
+			System.out.println(  "Login failed" );
 
 		}
 
@@ -269,10 +266,8 @@ public class DiabetesInterface {
 
 		Set<Treatment> treatments = DBManager.getTreatmentsByPatientId(patientId);
 		if (treatments.isEmpty()) {
-			System.out.println(ANSI_BLUE + "No treatments were added.");
-			System.out.println(
-					"Patient´s characteristics are too rare to be analyzed by this system. Consider personalized medical evaluation and monitoring for their condition."
-							+ ANSI_RESET);
+			System.out.println("No treatments were added.");
+			System.out.println("Patient´s characteristics are too rare to be analyzed by this system. Consider personalized medical evaluation and monitoring for their condition.");			
 		}
 
 		for (Treatment treatment : treatments) {
@@ -351,7 +346,7 @@ public class DiabetesInterface {
 		DBManager.insertDoctor(doc.getUsername(), doc.getPassword());
 		int doctorId = DBManager.getDoctorIdByUsername(username);
 		doc.setId(doctorId);
-		System.out.println(ANSI_GREEN + "Signup successful" + ANSI_RESET);
+		System.out.println( "Signup successful" );
 		System.out.println("Redirecting to login...");
 		return true;
 	}
