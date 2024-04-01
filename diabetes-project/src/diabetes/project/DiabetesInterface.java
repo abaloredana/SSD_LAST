@@ -244,8 +244,7 @@ public class DiabetesInterface {
 		String password;
 
 		do {
-			System.out.println("Type the username:\n"
-					+ "Usernames must start with a letter,"
+			System.out.println("Type the username:\n" + "Usernames must start with a letter,"
 					+ "and can only contain letters, numbers, underscores, or dashes."
 					+ "Length must be between 6 and 20 characters.");
 			username = scanner.next();
@@ -256,16 +255,13 @@ public class DiabetesInterface {
 		} while (!Utils.usernameIsValid(username));
 
 		do {
-			System.out.println("Type the password:\n"
-					+ "Passwords must be at least 8 characters long, "
+			System.out.println("Type the password:\n" + "Passwords must be at least 8 characters long, "
 					+ "and include at least one uppercase letter, one lowercase letter, "
-					+ "");
+					+ "one digit, and one special character (!@#$%^&*).");
 			password = scanner.next();
 
 			if (!Utils.passwordIsValid(password)) {
-				System.out.println("Invalid password. Passwords must be at least 8 characters long, "
-						+ "and include at least one uppercase letter, one lowercase letter, "
-						+ "one digit, and one special character (!@#$%^&*).");
+				System.out.println("Invalid password.");
 			}
 		} while (!Utils.passwordIsValid(password));
 
