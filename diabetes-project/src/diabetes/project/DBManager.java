@@ -143,6 +143,50 @@ public class DBManager {
 		}
 		return patients;
 	}
+	
+	public static void updatePatientData(Patient patient) {
+	    Connection c = null;
+	    PreparedStatement pstmt = null;
+	    try {
+	        // Open database connection
+	        Class.forName("org.sqlite.JDBC");
+	        c = DriverManager.getConnection("jdbc:sqlite:./db/treatments.db");
+
+	        // Prepare the SQL statement without modifying doctor_id
+	        String sql = "UPDATE Patient SET name = ?, typeOfDiabetes = ?, bmi = ?, age = ?, insulinProd = ?, insulinRes = ?, hypotension = ?, dyslipidemia = ?, pad = ?, nafld = ?, osteoporosis = ? WHERE id = ?";
+	        
+	        pstmt = c.prepareStatement(sql);
+	        
+	        // Set parameters from the Patient object
+	        pstmt.setString(1, patient.getName());
+	        pstmt.setInt(2, patient.getTypeOfDiabetes());
+	        pstmt.setDouble(3, patient.getBmi());
+	        pstmt.setInt(4, patient.getAge());
+	        pstmt.setInt(5, patient.getInsulinProd());
+	        pstmt.setBoolean(6, patient.isInsulinRes());
+	        pstmt.setBoolean(7, patient.isHypotension());
+	        pstmt.setBoolean(8, patient.isDyslipidemia());
+	        pstmt.setBoolean(9, patient.isPad());
+	        pstmt.setBoolean(10, patient.isNafld());
+	        pstmt.setBoolean(11, patient.isOsteoporosis());
+	        pstmt.setInt(12, patient.getId());
+	        
+	        // Execute update
+	        pstmt.executeUpdate();
+	        
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        // Close resources
+	        try {
+	            if (pstmt != null) pstmt.close();
+	            if (c != null) c.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	}
+
 
 	public static Patient searchPatient(String nombre) {
 		String nameToFind = nombre;

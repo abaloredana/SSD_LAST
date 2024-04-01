@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="diabetes.project.PatientTest" time="0.977" tests="9" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="diabetes.project.PatientTest" time="0.981" tests="9" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="19"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -13,7 +13,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="ES"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk-19.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/loredana/Desktop/SSD_LAST/diabetes-project/target/surefire/surefirebooter-20240401205332846_3.jar /Users/loredana/Desktop/SSD_LAST/diabetes-project/target/surefire 2024-04-01T20-53-32_785-jvmRun1 surefire-20240401205332846_1tmp surefire_0-20240401205332846_2tmp"/>
+    <property name="sun.java.command" value="/Users/loredana/Desktop/SSD_LAST/diabetes-project/target/surefire/surefirebooter-20240401223226066_3.jar /Users/loredana/Desktop/SSD_LAST/diabetes-project/target/surefire 2024-04-01T22-32-26_014-jvmRun1 surefire-20240401223226066_1tmp surefire_0-20240401223226066_2tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/loredana/Desktop/SSD_LAST/diabetes-project/target/test-classes:/Users/loredana/Desktop/SSD_LAST/diabetes-project/target/classes:/Users/loredana/.m2/repository/org/kie/kie-api/7.65.0.Final/kie-api-7.65.0.Final.jar:/Users/loredana/.m2/repository/org/kie/soup/kie-soup-maven-support/7.65.0.Final/kie-soup-maven-support-7.65.0.Final.jar:/Users/loredana/.m2/repository/org/drools/drools-core/7.65.0.Final/drools-core-7.65.0.Final.jar:/Users/loredana/.m2/repository/org/kie/kie-internal/7.65.0.Final/kie-internal-7.65.0.Final.jar:/Users/loredana/.m2/repository/org/kie/soup/kie-soup-xstream/7.65.0.Final/kie-soup-xstream-7.65.0.Final.jar:/Users/loredana/.m2/repository/org/drools/drools-core-reflective/7.65.0.Final/drools-core-reflective-7.65.0.Final.jar:/Users/loredana/.m2/repository/org/drools/drools-core-dynamic/7.65.0.Final/drools-core-dynamic-7.65.0.Final.jar:/Users/loredana/.m2/repository/commons-codec/commons-codec/1.15/commons-codec-1.15.jar:/Users/loredana/.m2/repository/org/drools/drools-compiler/7.65.0.Final/drools-compiler-7.65.0.Final.jar:/Users/loredana/.m2/repository/org/kie/kie-memory-compiler/7.65.0.Final/kie-memory-compiler-7.65.0.Final.jar:/Users/loredana/.m2/repository/org/drools/drools-ecj/7.65.0.Final/drools-ecj-7.65.0.Final.jar:/Users/loredana/.m2/repository/org/antlr/antlr-runtime/3.5.2/antlr-runtime-3.5.2.jar:/Users/loredana/.m2/repository/com/thoughtworks/xstream/xstream/1.4.18/xstream-1.4.18.jar:/Users/loredana/.m2/repository/io/github/x-stream/mxparser/1.2.2/mxparser-1.2.2.jar:/Users/loredana/.m2/repository/xmlpull/xmlpull/1.1.3.1/xmlpull-1.1.3.1.jar:/Users/loredana/.m2/repository/org/drools/drools-mvel/7.65.0.Final/drools-mvel-7.65.0.Final.jar:/Users/loredana/.m2/repository/org/mvel/mvel2/2.4.14.Final/mvel2-2.4.14.Final.jar:/Users/loredana/.m2/repository/org/kie/soup/kie-soup-project-datamodel-commons/7.65.0.Final/kie-soup-project-datamodel-commons-7.65.0.Final.jar:/Users/loredana/.m2/repository/org/kie/soup/kie-soup-commons/7.65.0.Final/kie-soup-commons-7.65.0.Final.jar:/Users/loredana/.m2/repository/org/kie/soup/kie-soup-project-datamodel-api/7.65.0.Final/kie-soup-project-datamodel-api-7.65.0.Final.jar:/Users/loredana/.m2/repository/org/xerial/sqlite-jdbc/3.45.2.0/sqlite-jdbc-3.45.2.0.jar:/Users/loredana/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.0/junit-jupiter-api-5.10.0.jar:/Users/loredana/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/loredana/.m2/repository/org/junit/platform/junit-platform-commons/1.10.0/junit-platform-commons-1.10.0.jar:/Users/loredana/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/loredana/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.0/junit-jupiter-engine-5.10.0.jar:/Users/loredana/.m2/repository/org/junit/platform/junit-platform-engine/1.10.0/junit-platform-engine-1.10.0.jar:/Users/loredana/.m2/repository/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar:/Users/loredana/.m2/repository/ch/qos/logback/logback-classic/1.2.11/logback-classic-1.2.11.jar:/Users/loredana/.m2/repository/ch/qos/logback/logback-core/1.2.11/logback-core-1.2.11.jar:"/>
@@ -31,7 +31,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/loredana/Desktop/SSD_LAST/diabetes-project/target/surefire/surefirebooter-20240401205332846_3.jar"/>
+    <property name="surefire.real.class.path" value="/Users/loredana/Desktop/SSD_LAST/diabetes-project/target/surefire/surefirebooter-20240401223226066_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="19.0.2+7-44"/>
@@ -60,120 +60,120 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="63.0"/>
   </properties>
-  <testcase name="testPatient1InsulinRule" classname="diabetes.project.PatientTest" time="0.923">
-    <system-out><![CDATA[20:53:33.250 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Discovered kie.conf files: [jar:file:/Users/loredana/.m2/repository/org/drools/drools-core/7.65.0.Final/drools-core-7.65.0.Final.jar!/META-INF/kie/drools-core/kie.conf, jar:file:/Users/loredana/.m2/repository/org/kie/kie-internal/7.65.0.Final/kie-internal-7.65.0.Final.jar!/META-INF/kie/kie-internal/kie.conf, jar:file:/Users/loredana/.m2/repository/org/drools/drools-compiler/7.65.0.Final/drools-compiler-7.65.0.Final.jar!/META-INF/kie/drools-compiler/kie.conf, jar:file:/Users/loredana/.m2/repository/org/drools/drools-mvel/7.65.0.Final/drools-mvel-7.65.0.Final.jar!/META-INF/kie/drools-mvel/kie.conf]
-20:53:33.252 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Loading kie.conf from jar:file:/Users/loredana/.m2/repository/org/drools/drools-core/7.65.0.Final/drools-core-7.65.0.Final.jar!/META-INF/kie/drools-core/kie.conf in classloader jdk.internal.loader.ClassLoaders$AppClassLoader@5b37e0d2
-20:53:33.253 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Added Service org.drools.core.io.impl.ResourceFactoryServiceImpl with priority 0
-20:53:33.253 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Added Service org.drools.core.concurrent.ExecutorProviderImpl with priority 0
-20:53:33.253 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Loading kie.conf from jar:file:/Users/loredana/.m2/repository/org/kie/kie-internal/7.65.0.Final/kie-internal-7.65.0.Final.jar!/META-INF/kie/kie-internal/kie.conf in classloader jdk.internal.loader.ClassLoaders$AppClassLoader@5b37e0d2
-20:53:33.254 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Added Service org.kie.internal.services.KieAssemblersImpl with priority 0
-20:53:33.255 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Added Service org.kie.internal.services.KieRuntimesImpl with priority 0
-20:53:33.255 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Added Service org.kie.internal.services.KieWeaversImpl with priority 0
-20:53:33.255 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Added Service org.kie.internal.services.KieBeliefsImpl with priority 0
-20:53:33.255 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Loading kie.conf from jar:file:/Users/loredana/.m2/repository/org/drools/drools-compiler/7.65.0.Final/drools-compiler-7.65.0.Final.jar!/META-INF/kie/drools-compiler/kie.conf in classloader jdk.internal.loader.ClassLoaders$AppClassLoader@5b37e0d2
-20:53:33.257 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Added Service org.drools.compiler.kie.builder.impl.KieServicesImpl with priority 0
-20:53:33.258 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Added Service org.drools.compiler.builder.impl.KnowledgeBuilderFactoryServiceImpl with priority 0
-20:53:33.258 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Added Service org.drools.compiler.builder.impl.JaxbConfigurationFactoryServiceImpl with priority 0
-20:53:33.259 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Added Service org.drools.compiler.kie.builder.impl.KieBaseUpdatersImpl with priority 0
-20:53:33.259 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Loading kie.conf from jar:file:/Users/loredana/.m2/repository/org/drools/drools-mvel/7.65.0.Final/drools-mvel-7.65.0.Final.jar!/META-INF/kie/drools-mvel/kie.conf in classloader jdk.internal.loader.ClassLoaders$AppClassLoader@5b37e0d2
-20:53:33.273 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Added Service org.drools.mvel.MVELConstraintBuilder with priority 0
-20:53:33.274 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Added Service org.drools.mvel.MVELCoreComponentsBuilder with priority 0
-20:53:33.275 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Added Service org.drools.mvel.asm.ClassFieldAccessorFactory with priority 0
-20:53:33.278 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Added Service org.drools.mvel.asm.DefaultClassBuilderFactory with priority 0
-20:53:33.278 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Service org.kie.internal.builder.KnowledgeBuilderFactoryService is implemented by org.drools.compiler.builder.impl.KnowledgeBuilderFactoryServiceImpl@7bab3f1a
-20:53:33.278 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Service org.kie.api.internal.runtime.beliefs.KieBeliefs is implemented by org.kie.internal.services.KieBeliefsImpl@437da279
-20:53:33.278 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Service org.drools.compiler.rule.builder.ConstraintBuilder is implemented by org.drools.mvel.MVELConstraintBuilder@23c30a20
-20:53:33.278 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Service org.drools.core.base.FieldAccessorFactory is implemented by org.drools.mvel.asm.ClassFieldAccessorFactory@1e1a0406
-20:53:33.279 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Service org.drools.compiler.kie.builder.impl.KieBaseUpdaters is implemented by org.drools.compiler.kie.builder.impl.KieBaseUpdatersImpl@3cebbb30
-20:53:33.279 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Service org.kie.api.internal.assembler.KieAssemblers is implemented by org.kie.internal.services.KieAssemblersImpl@12aba8be
-20:53:33.279 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Service org.kie.internal.builder.JaxbConfigurationFactoryService is implemented by org.drools.compiler.builder.impl.JaxbConfigurationFactoryServiceImpl@290222c1
-20:53:33.279 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Service org.kie.api.internal.runtime.KieRuntimes is implemented by org.kie.internal.services.KieRuntimesImpl@67f639d3
-20:53:33.279 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Service org.kie.api.io.KieResources is implemented by org.drools.core.io.impl.ResourceFactoryServiceImpl@6253c26
-20:53:33.279 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Service org.drools.core.base.CoreComponentsBuilder is implemented by org.drools.mvel.MVELCoreComponentsBuilder@49049a04
-20:53:33.279 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Service org.drools.core.factmodel.ClassBuilderFactory is implemented by org.drools.mvel.asm.DefaultClassBuilderFactory@71a8adcf
-20:53:33.279 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Service org.kie.api.concurrent.KieExecutors is implemented by org.drools.core.concurrent.ExecutorProviderImpl@27462a88
-20:53:33.279 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Service org.kie.api.KieServices is implemented by org.drools.compiler.kie.builder.impl.KieServicesImpl@82de64a
-20:53:33.279 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Service org.kie.api.internal.weaver.KieWeavers is implemented by org.kie.internal.services.KieWeaversImpl@659499f1
-20:53:33.299 [main] INFO org.drools.compiler.kie.builder.impl.ClasspathKieProject - Found kmodule: file:/Users/loredana/Desktop/SSD_LAST/diabetes-project/target/classes/META-INF/kmodule.xml
-20:53:33.299 [main] DEBUG org.drools.compiler.kie.builder.impl.ClasspathKieProject - KieModule URL type=file url=/Users/loredana/Desktop/SSD_LAST/diabetes-project/target/classes
-20:53:33.470 [main] DEBUG org.drools.compiler.kie.builder.impl.ClasspathKieProject - Found and used pom.properties /Users/loredana/Desktop/SSD_LAST/diabetes-project/target/classes/META-INF/maven/DiabetesDSS/diabetes-project/pom.properties
-20:53:33.472 [main] INFO org.drools.compiler.kie.builder.impl.InternalKieModuleProvider - Creating KieModule for artifact DiabetesDSS:diabetes-project:Version1
-20:53:33.473 [main] DEBUG org.drools.compiler.kie.builder.impl.ClasspathKieProject - Discovered classpath module DiabetesDSS:diabetes-project:Version1
-20:53:33.475 [main] DEBUG org.drools.compiler.kie.builder.impl.KieRepositoryImpl - KieModule was added: FileKieModule[releaseId=DiabetesDSS:diabetes-project:Version1,file=/Users/loredana/Desktop/SSD_LAST/diabetes-project/target/classes]
-20:53:33.475 [main] INFO org.drools.compiler.kie.builder.impl.KieContainerImpl - Start creation of KieBase: prueba
-20:53:33.479 [main] WARN org.drools.compiler.kie.builder.impl.KieBuilderImpl - File 'Rules/rules.drl' is in folder 'Rules' but declares package 'diabetes.project'. It is advised to have a correspondance between package and folder names.
-20:53:33.486 [main] DEBUG org.drools.compiler.compiler.JavaDialectConfiguration - Selected compiler ECLIPSE [drools.dialect.java.compiler:null, hasEclipseCompiler:true]
-20:53:33.514 [main] DEBUG org.drools.compiler.compiler.JavaDialectConfiguration - Selected compiler ECLIPSE [drools.dialect.java.compiler:null, hasEclipseCompiler:true]
-20:53:33.514 [main] DEBUG org.drools.compiler.compiler.JavaDialectConfiguration - Selected compiler ECLIPSE [drools.dialect.java.compiler:null, hasEclipseCompiler:true]
-20:53:34.056 [main] INFO org.drools.compiler.kie.builder.impl.KieContainerImpl - End creation of KieBase: prueba
-20:53:34.076 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now FIRING_ALL_RULES
-20:53:34.090 [main] DEBUG org.drools.core.common.DefaultAgenda - State was FIRING_ALL_RULES is now HALTING
-20:53:34.090 [main] DEBUG org.drools.core.common.DefaultAgenda - State was HALTING is now INACTIVE
-20:53:34.090 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now DISPOSED
+  <testcase name="testPatient1InsulinRule" classname="diabetes.project.PatientTest" time="0.929">
+    <system-out><![CDATA[22:32:26.459 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Discovered kie.conf files: [jar:file:/Users/loredana/.m2/repository/org/drools/drools-core/7.65.0.Final/drools-core-7.65.0.Final.jar!/META-INF/kie/drools-core/kie.conf, jar:file:/Users/loredana/.m2/repository/org/kie/kie-internal/7.65.0.Final/kie-internal-7.65.0.Final.jar!/META-INF/kie/kie-internal/kie.conf, jar:file:/Users/loredana/.m2/repository/org/drools/drools-compiler/7.65.0.Final/drools-compiler-7.65.0.Final.jar!/META-INF/kie/drools-compiler/kie.conf, jar:file:/Users/loredana/.m2/repository/org/drools/drools-mvel/7.65.0.Final/drools-mvel-7.65.0.Final.jar!/META-INF/kie/drools-mvel/kie.conf]
+22:32:26.461 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Loading kie.conf from jar:file:/Users/loredana/.m2/repository/org/drools/drools-core/7.65.0.Final/drools-core-7.65.0.Final.jar!/META-INF/kie/drools-core/kie.conf in classloader jdk.internal.loader.ClassLoaders$AppClassLoader@5b37e0d2
+22:32:26.462 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Added Service org.drools.core.io.impl.ResourceFactoryServiceImpl with priority 0
+22:32:26.463 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Added Service org.drools.core.concurrent.ExecutorProviderImpl with priority 0
+22:32:26.463 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Loading kie.conf from jar:file:/Users/loredana/.m2/repository/org/kie/kie-internal/7.65.0.Final/kie-internal-7.65.0.Final.jar!/META-INF/kie/kie-internal/kie.conf in classloader jdk.internal.loader.ClassLoaders$AppClassLoader@5b37e0d2
+22:32:26.464 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Added Service org.kie.internal.services.KieAssemblersImpl with priority 0
+22:32:26.464 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Added Service org.kie.internal.services.KieRuntimesImpl with priority 0
+22:32:26.464 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Added Service org.kie.internal.services.KieWeaversImpl with priority 0
+22:32:26.464 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Added Service org.kie.internal.services.KieBeliefsImpl with priority 0
+22:32:26.465 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Loading kie.conf from jar:file:/Users/loredana/.m2/repository/org/drools/drools-compiler/7.65.0.Final/drools-compiler-7.65.0.Final.jar!/META-INF/kie/drools-compiler/kie.conf in classloader jdk.internal.loader.ClassLoaders$AppClassLoader@5b37e0d2
+22:32:26.466 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Added Service org.drools.compiler.kie.builder.impl.KieServicesImpl with priority 0
+22:32:26.467 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Added Service org.drools.compiler.builder.impl.KnowledgeBuilderFactoryServiceImpl with priority 0
+22:32:26.468 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Added Service org.drools.compiler.builder.impl.JaxbConfigurationFactoryServiceImpl with priority 0
+22:32:26.468 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Added Service org.drools.compiler.kie.builder.impl.KieBaseUpdatersImpl with priority 0
+22:32:26.468 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Loading kie.conf from jar:file:/Users/loredana/.m2/repository/org/drools/drools-mvel/7.65.0.Final/drools-mvel-7.65.0.Final.jar!/META-INF/kie/drools-mvel/kie.conf in classloader jdk.internal.loader.ClassLoaders$AppClassLoader@5b37e0d2
+22:32:26.481 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Added Service org.drools.mvel.MVELConstraintBuilder with priority 0
+22:32:26.482 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Added Service org.drools.mvel.MVELCoreComponentsBuilder with priority 0
+22:32:26.483 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Added Service org.drools.mvel.asm.ClassFieldAccessorFactory with priority 0
+22:32:26.485 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Added Service org.drools.mvel.asm.DefaultClassBuilderFactory with priority 0
+22:32:26.485 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Service org.kie.internal.builder.KnowledgeBuilderFactoryService is implemented by org.drools.compiler.builder.impl.KnowledgeBuilderFactoryServiceImpl@7bab3f1a
+22:32:26.485 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Service org.kie.api.internal.runtime.beliefs.KieBeliefs is implemented by org.kie.internal.services.KieBeliefsImpl@437da279
+22:32:26.486 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Service org.drools.compiler.rule.builder.ConstraintBuilder is implemented by org.drools.mvel.MVELConstraintBuilder@23c30a20
+22:32:26.486 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Service org.drools.core.base.FieldAccessorFactory is implemented by org.drools.mvel.asm.ClassFieldAccessorFactory@1e1a0406
+22:32:26.486 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Service org.drools.compiler.kie.builder.impl.KieBaseUpdaters is implemented by org.drools.compiler.kie.builder.impl.KieBaseUpdatersImpl@3cebbb30
+22:32:26.486 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Service org.kie.api.internal.assembler.KieAssemblers is implemented by org.kie.internal.services.KieAssemblersImpl@12aba8be
+22:32:26.486 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Service org.kie.internal.builder.JaxbConfigurationFactoryService is implemented by org.drools.compiler.builder.impl.JaxbConfigurationFactoryServiceImpl@290222c1
+22:32:26.486 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Service org.kie.api.internal.runtime.KieRuntimes is implemented by org.kie.internal.services.KieRuntimesImpl@67f639d3
+22:32:26.486 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Service org.kie.api.io.KieResources is implemented by org.drools.core.io.impl.ResourceFactoryServiceImpl@6253c26
+22:32:26.486 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Service org.drools.core.base.CoreComponentsBuilder is implemented by org.drools.mvel.MVELCoreComponentsBuilder@49049a04
+22:32:26.486 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Service org.drools.core.factmodel.ClassBuilderFactory is implemented by org.drools.mvel.asm.DefaultClassBuilderFactory@71a8adcf
+22:32:26.486 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Service org.kie.api.concurrent.KieExecutors is implemented by org.drools.core.concurrent.ExecutorProviderImpl@27462a88
+22:32:26.486 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Service org.kie.api.KieServices is implemented by org.drools.compiler.kie.builder.impl.KieServicesImpl@82de64a
+22:32:26.486 [main] DEBUG org.kie.api.internal.utils.ServiceDiscoveryImpl - Service org.kie.api.internal.weaver.KieWeavers is implemented by org.kie.internal.services.KieWeaversImpl@659499f1
+22:32:26.505 [main] INFO org.drools.compiler.kie.builder.impl.ClasspathKieProject - Found kmodule: file:/Users/loredana/Desktop/SSD_LAST/diabetes-project/target/classes/META-INF/kmodule.xml
+22:32:26.505 [main] DEBUG org.drools.compiler.kie.builder.impl.ClasspathKieProject - KieModule URL type=file url=/Users/loredana/Desktop/SSD_LAST/diabetes-project/target/classes
+22:32:26.676 [main] DEBUG org.drools.compiler.kie.builder.impl.ClasspathKieProject - Found and used pom.properties /Users/loredana/Desktop/SSD_LAST/diabetes-project/target/classes/META-INF/maven/DiabetesDSS/diabetes-project/pom.properties
+22:32:26.678 [main] INFO org.drools.compiler.kie.builder.impl.InternalKieModuleProvider - Creating KieModule for artifact DiabetesDSS:diabetes-project:Version1
+22:32:26.679 [main] DEBUG org.drools.compiler.kie.builder.impl.ClasspathKieProject - Discovered classpath module DiabetesDSS:diabetes-project:Version1
+22:32:26.680 [main] DEBUG org.drools.compiler.kie.builder.impl.KieRepositoryImpl - KieModule was added: FileKieModule[releaseId=DiabetesDSS:diabetes-project:Version1,file=/Users/loredana/Desktop/SSD_LAST/diabetes-project/target/classes]
+22:32:26.681 [main] INFO org.drools.compiler.kie.builder.impl.KieContainerImpl - Start creation of KieBase: prueba
+22:32:26.685 [main] WARN org.drools.compiler.kie.builder.impl.KieBuilderImpl - File 'Rules/rules.drl' is in folder 'Rules' but declares package 'diabetes.project'. It is advised to have a correspondance between package and folder names.
+22:32:26.692 [main] DEBUG org.drools.compiler.compiler.JavaDialectConfiguration - Selected compiler ECLIPSE [drools.dialect.java.compiler:null, hasEclipseCompiler:true]
+22:32:26.718 [main] DEBUG org.drools.compiler.compiler.JavaDialectConfiguration - Selected compiler ECLIPSE [drools.dialect.java.compiler:null, hasEclipseCompiler:true]
+22:32:26.718 [main] DEBUG org.drools.compiler.compiler.JavaDialectConfiguration - Selected compiler ECLIPSE [drools.dialect.java.compiler:null, hasEclipseCompiler:true]
+22:32:27.272 [main] INFO org.drools.compiler.kie.builder.impl.KieContainerImpl - End creation of KieBase: prueba
+22:32:27.293 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now FIRING_ALL_RULES
+22:32:27.307 [main] DEBUG org.drools.core.common.DefaultAgenda - State was FIRING_ALL_RULES is now HALTING
+22:32:27.307 [main] DEBUG org.drools.core.common.DefaultAgenda - State was HALTING is now INACTIVE
+22:32:27.307 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now DISPOSED
 Test testPatient1InsulinRule is correct.
 ]]></system-out>
   </testcase>
   <testcase name="testPatient3Metformin1Rule" classname="diabetes.project.PatientTest" time="0.004">
-    <system-out><![CDATA[20:53:34.098 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now FIRING_ALL_RULES
-20:53:34.100 [main] DEBUG org.drools.core.common.DefaultAgenda - State was FIRING_ALL_RULES is now HALTING
-20:53:34.100 [main] DEBUG org.drools.core.common.DefaultAgenda - State was HALTING is now INACTIVE
-20:53:34.100 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now DISPOSED
+    <system-out><![CDATA[22:32:27.315 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now FIRING_ALL_RULES
+22:32:27.318 [main] DEBUG org.drools.core.common.DefaultAgenda - State was FIRING_ALL_RULES is now HALTING
+22:32:27.318 [main] DEBUG org.drools.core.common.DefaultAgenda - State was HALTING is now INACTIVE
+22:32:27.318 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now DISPOSED
 Test testPatient3Metformin1Rule is correct.
 ]]></system-out>
   </testcase>
   <testcase name="testPatient2InsulinRule" classname="diabetes.project.PatientTest" time="0.002">
-    <system-out><![CDATA[20:53:34.102 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now FIRING_ALL_RULES
-20:53:34.103 [main] DEBUG org.drools.core.common.DefaultAgenda - State was FIRING_ALL_RULES is now HALTING
-20:53:34.103 [main] DEBUG org.drools.core.common.DefaultAgenda - State was HALTING is now INACTIVE
-20:53:34.103 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now DISPOSED
+    <system-out><![CDATA[22:32:27.319 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now FIRING_ALL_RULES
+22:32:27.320 [main] DEBUG org.drools.core.common.DefaultAgenda - State was FIRING_ALL_RULES is now HALTING
+22:32:27.320 [main] DEBUG org.drools.core.common.DefaultAgenda - State was HALTING is now INACTIVE
+22:32:27.320 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now DISPOSED
 Test testPatient2InsulinRule is correct.
 ]]></system-out>
   </testcase>
-  <testcase name="testPatient6Rule" classname="diabetes.project.PatientTest" time="0.006">
-    <system-out><![CDATA[20:53:34.104 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now FIRING_ALL_RULES
-20:53:34.109 [main] DEBUG org.drools.core.common.DefaultAgenda - State was FIRING_ALL_RULES is now HALTING
-20:53:34.109 [main] DEBUG org.drools.core.common.DefaultAgenda - State was HALTING is now INACTIVE
-20:53:34.109 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now DISPOSED
+  <testcase name="testPatient6Rule" classname="diabetes.project.PatientTest" time="0.012">
+    <system-out><![CDATA[22:32:27.321 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now FIRING_ALL_RULES
+22:32:27.331 [main] DEBUG org.drools.core.common.DefaultAgenda - State was FIRING_ALL_RULES is now HALTING
+22:32:27.331 [main] DEBUG org.drools.core.common.DefaultAgenda - State was HALTING is now INACTIVE
+22:32:27.332 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now DISPOSED
 Test testPatient6Rule is correct.
 ]]></system-out>
   </testcase>
-  <testcase name="testPatient7Rule" classname="diabetes.project.PatientTest" time="0.004">
-    <system-out><![CDATA[20:53:34.111 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now FIRING_ALL_RULES
-20:53:34.115 [main] DEBUG org.drools.core.common.DefaultAgenda - State was FIRING_ALL_RULES is now HALTING
-20:53:34.115 [main] DEBUG org.drools.core.common.DefaultAgenda - State was HALTING is now INACTIVE
-20:53:34.115 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now DISPOSED
+  <testcase name="testPatient7Rule" classname="diabetes.project.PatientTest" time="0.005">
+    <system-out><![CDATA[22:32:27.334 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now FIRING_ALL_RULES
+22:32:27.337 [main] DEBUG org.drools.core.common.DefaultAgenda - State was FIRING_ALL_RULES is now HALTING
+22:32:27.337 [main] DEBUG org.drools.core.common.DefaultAgenda - State was HALTING is now INACTIVE
+22:32:27.337 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now DISPOSED
 Test testPatient7Rule is correct.
 ]]></system-out>
   </testcase>
   <testcase name="testPatient8Rule" classname="diabetes.project.PatientTest" time="0.003">
-    <system-out><![CDATA[20:53:34.116 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now FIRING_ALL_RULES
-20:53:34.118 [main] DEBUG org.drools.core.common.DefaultAgenda - State was FIRING_ALL_RULES is now HALTING
-20:53:34.118 [main] DEBUG org.drools.core.common.DefaultAgenda - State was HALTING is now INACTIVE
-20:53:34.118 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now DISPOSED
+    <system-out><![CDATA[22:32:27.339 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now FIRING_ALL_RULES
+22:32:27.340 [main] DEBUG org.drools.core.common.DefaultAgenda - State was FIRING_ALL_RULES is now HALTING
+22:32:27.340 [main] DEBUG org.drools.core.common.DefaultAgenda - State was HALTING is now INACTIVE
+22:32:27.340 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now DISPOSED
 Test testPatient8Rule is correct.
 ]]></system-out>
   </testcase>
-  <testcase name="testPatient9Rule" classname="diabetes.project.PatientTest" time="0.002">
-    <system-out><![CDATA[20:53:34.120 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now FIRING_ALL_RULES
-20:53:34.121 [main] DEBUG org.drools.core.common.DefaultAgenda - State was FIRING_ALL_RULES is now HALTING
-20:53:34.121 [main] DEBUG org.drools.core.common.DefaultAgenda - State was HALTING is now INACTIVE
-20:53:34.121 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now DISPOSED
+  <testcase name="testPatient9Rule" classname="diabetes.project.PatientTest" time="0.001">
+    <system-out><![CDATA[22:32:27.342 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now FIRING_ALL_RULES
+22:32:27.343 [main] DEBUG org.drools.core.common.DefaultAgenda - State was FIRING_ALL_RULES is now HALTING
+22:32:27.343 [main] DEBUG org.drools.core.common.DefaultAgenda - State was HALTING is now INACTIVE
+22:32:27.343 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now DISPOSED
 Test testPatient9Rule is correct.
 ]]></system-out>
   </testcase>
-  <testcase name="testPatient4Metformin2Rule" classname="diabetes.project.PatientTest" time="0.008">
-    <system-out><![CDATA[20:53:34.123 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now FIRING_ALL_RULES
-20:53:34.130 [main] DEBUG org.drools.core.common.DefaultAgenda - State was FIRING_ALL_RULES is now HALTING
-20:53:34.130 [main] DEBUG org.drools.core.common.DefaultAgenda - State was HALTING is now INACTIVE
-20:53:34.130 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now DISPOSED
+  <testcase name="testPatient4Metformin2Rule" classname="diabetes.project.PatientTest" time="0.003">
+    <system-out><![CDATA[22:32:27.344 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now FIRING_ALL_RULES
+22:32:27.345 [main] DEBUG org.drools.core.common.DefaultAgenda - State was FIRING_ALL_RULES is now HALTING
+22:32:27.345 [main] DEBUG org.drools.core.common.DefaultAgenda - State was HALTING is now INACTIVE
+22:32:27.345 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now DISPOSED
 Test testPatient4Metformin2Rule is correct.
 ]]></system-out>
   </testcase>
-  <testcase name="testPatient5" classname="diabetes.project.PatientTest" time="0.008">
-    <system-out><![CDATA[20:53:34.131 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now FIRING_ALL_RULES
-20:53:34.137 [main] DEBUG org.drools.core.common.DefaultAgenda - State was FIRING_ALL_RULES is now HALTING
-20:53:34.137 [main] DEBUG org.drools.core.common.DefaultAgenda - State was HALTING is now INACTIVE
-20:53:34.137 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now DISPOSED
+  <testcase name="testPatient5" classname="diabetes.project.PatientTest" time="0.007">
+    <system-out><![CDATA[22:32:27.348 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now FIRING_ALL_RULES
+22:32:27.353 [main] DEBUG org.drools.core.common.DefaultAgenda - State was FIRING_ALL_RULES is now HALTING
+22:32:27.353 [main] DEBUG org.drools.core.common.DefaultAgenda - State was HALTING is now INACTIVE
+22:32:27.353 [main] DEBUG org.drools.core.common.DefaultAgenda - State was INACTIVE is now DISPOSED
 Test testPatient5 is correct.
 ]]></system-out>
   </testcase>

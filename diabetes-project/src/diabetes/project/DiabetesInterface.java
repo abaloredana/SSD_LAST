@@ -14,19 +14,18 @@ import java.util.AbstractMap;
 import java.util.Map;
 
 /**
-*
-* @author loredana
-*/
+ *
+ * @author loredana
+ */
 
 public class DiabetesInterface {
 
-	
 	public static Set<Patient> patients = new HashSet<>();
 	private static Scanner scanner = new Scanner(System.in);
 
 // DOCTOR-RELATED METHODS
 	public static void menu(Doctor doctor) {
-		
+
 		KieContext kieContext = null;
 		while (true) {
 
@@ -34,8 +33,9 @@ public class DiabetesInterface {
 			do {
 				System.out.println("\nDiabetes Management System");
 				System.out.println("1. Add Patient");
-				System.out.println("2. Evaluate Patients.");
-				System.out.println("3. Exit.");
+				System.out.println("2. Edit Patient.");
+				System.out.println("3. Evaluate Patients.");
+				System.out.println("4. Exit.");
 
 				System.out.print("Choose an option: ");
 				input = scanner.nextLine().trim();
@@ -49,16 +49,19 @@ public class DiabetesInterface {
 
 			switch (choice) {
 			case 1:
-				addNewPatient(scanner, doctor);
+				addNewPatient(doctor);
 				break;
 			case 2:
+				editPatient(doctor);
+				break;
+			case 3:
 				if (kieContext == null) {
 					kieContext = evaluatePatients();
 				}
 				performEvaluation(kieContext, doctor);
 
 				break;
-			case 3:
+			case 4:
 				System.exit(0);
 			default:
 				invalidChoicePrompt();
@@ -66,9 +69,17 @@ public class DiabetesInterface {
 		}
 	}
 
-	private static Set<Patient> addNewPatient(Scanner scanner, Doctor doctor) {
-		System.out.println("Adding a new patient...");
+	public static void editPatient(Doctor doctor) {
+		patients = DBManager.getPatientsByDoctorId(doctor.getId());
+		int id = displayPatients();
+		Patient patient =promptForPatientData();
+		patient.setId(id);
+		DBManager.updatePatientData(patient);
+		System.out.println("Patient data has been updated.");
+		
+	}
 
+	public static Patient promptForPatientData() {
 		String name;
 
 		do {
@@ -136,6 +147,13 @@ public class DiabetesInterface {
 		Patient patient = new Patient(name, typeOfDiabetes, bmi, age, insulinProd, insulinRes, hypotension,
 				dyslipidemia, pad, nafld, osteoporosis);
 
+		return patient;
+	}
+
+	private static Set<Patient> addNewPatient(Doctor doctor) {
+		System.out.println("Adding a new patient...");
+
+		Patient patient = promptForPatientData();
 		patients.add(patient);
 
 		DBManager.insertPatient(patient.getName(), patient.getTypeOfDiabetes(), patient.getBmi(), patient.getAge(),
@@ -181,10 +199,10 @@ public class DiabetesInterface {
 	public static void logInVeredict(boolean authorized) {
 
 		if (authorized) {
-			System.out.println( "Login successful" );
+			System.out.println("Login successful");
 
 		} else {
-			System.out.println(  "Login failed" );
+			System.out.println("Login failed");
 
 		}
 
@@ -225,8 +243,7 @@ public class DiabetesInterface {
 
 		System.out.println("Evaluation completed for patients:");
 		int id = displayPatients();
-		System.out.println(
-				"Treatments that can be used to treat patient " + DBManager.getPatientNameById(id).toUpperCase() + ":");
+		System.out.println("Treatments that can be used to treat patient " + DBManager.getPatientNameById(id).toUpperCase() + ":");
 		displayTreatments(id);
 		System.out.println("Press enter to return to the main menu...");
 		scanner.nextLine();
@@ -245,7 +262,7 @@ public class DiabetesInterface {
 		}
 
 		do {
-			System.out.println("Select the number of the patient you want to see the treatments of: ");
+			System.out.println("Select the number of the patient you want: ");
 			input = scanner.nextLine().trim();
 
 			if (!Utils.choiceIsValid(input)) {
@@ -267,7 +284,8 @@ public class DiabetesInterface {
 		Set<Treatment> treatments = DBManager.getTreatmentsByPatientId(patientId);
 		if (treatments.isEmpty()) {
 			System.out.println("No treatments were added.");
-			System.out.println("Patient´s characteristics are too rare to be analyzed by this system. Consider personalized medical evaluation and monitoring for their condition.");			
+			System.out.println(
+					"Patient´s characteristics are too rare to be analyzed by this system. Consider personalized medical evaluation and monitoring for their condition.");
 		}
 
 		for (Treatment treatment : treatments) {
@@ -346,7 +364,7 @@ public class DiabetesInterface {
 		DBManager.insertDoctor(doc.getUsername(), doc.getPassword());
 		int doctorId = DBManager.getDoctorIdByUsername(username);
 		doc.setId(doctorId);
-		System.out.println( "Signup successful" );
+		System.out.println("Signup successful");
 		System.out.println("Redirecting to login...");
 		return true;
 	}
